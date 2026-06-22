@@ -11,484 +11,466 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --navy:#0a0f1e;
-  --navy2:#0f172a;
+  --white:#ffffff;
+  --off:#f8fafc;
+  --off2:#f1f5f9;
+  --navy:#0f172a;
+  --navy2:#1e293b;
+  --navy3:#334155;
   --blue:#2563eb;
   --blue-mid:#1d4ed8;
-  --blue-light:#60a5fa;
-  --blue-glow:rgba(37,99,235,.35);
-  --surface:rgba(255,255,255,.04);
-  --surface2:rgba(255,255,255,.07);
-  --border:rgba(255,255,255,.08);
-  --border2:rgba(96,165,250,.15);
-  --text:#f1f5f9;
-  --muted:rgba(241,245,249,.55);
-  --muted2:rgba(241,245,249,.35);
-  --white:#fff;
-  --accent:#38bdf8;
-  --green:#22c55e;
-  --green-dim:rgba(34,197,94,.15);
+  --blue-light:#3b82f6;
+  --blue-pale:#eff6ff;
+  --blue-pale2:#dbeafe;
+  --muted:#64748b;
+  --muted2:#94a3b8;
+  --border:#e2e8f0;
+  --border2:#cbd5e1;
+  --green:#16a34a;
+  --green-pale:#f0fdf4;
+  --green-border:#bbf7d0;
+  --red-pale:#fef2f2;
+  --amber:#d97706;
+  --amber-pale:#fffbeb;
+  --shadow-sm:0 1px 3px rgba(15,23,42,.06),0 1px 2px rgba(15,23,42,.04);
+  --shadow:0 4px 16px rgba(15,23,42,.08),0 1px 4px rgba(15,23,42,.04);
+  --shadow-lg:0 20px 48px rgba(15,23,42,.12),0 4px 12px rgba(15,23,42,.06);
+  --shadow-blue:0 8px 32px rgba(37,99,235,.2);
 }
 html{scroll-behavior:smooth}
 body{
-  background:var(--navy);
-  color:var(--text);
+  background:var(--white);
+  color:var(--navy);
   font-family:'Inter',system-ui,sans-serif;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
-}
-
-/* ─── GRID BACKGROUND ─── */
-body::before{
-  content:'';
-  position:fixed;top:0;left:0;right:0;bottom:0;
-  background-image:
-    linear-gradient(rgba(37,99,235,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(37,99,235,.04) 1px, transparent 1px);
-  background-size:60px 60px;
-  pointer-events:none;z-index:0;
+  line-height:1.6;
 }
 
 /* ─── NAV ─── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
-  padding:0 48px;height:64px;
+  height:60px;padding:0 48px;
   display:flex;align-items:center;justify-content:space-between;
-  background:rgba(10,15,30,.8);
-  backdrop-filter:blur(20px);
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(16px);
   border-bottom:1px solid var(--border);
-  transition:all .3s;
+  transition:box-shadow .2s;
 }
-nav.scrolled{background:rgba(10,15,30,.95);border-bottom-color:var(--border2)}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+nav.scrolled{box-shadow:var(--shadow-sm)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
 .logo-icon{
-  width:36px;height:36px;
-  background:linear-gradient(135deg,var(--blue),var(--accent));
-  border-radius:10px;
+  width:32px;height:32px;
+  background:var(--blue);
+  border-radius:8px;
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 0 20px var(--blue-glow);
+  box-shadow:var(--shadow-blue);
   flex-shrink:0;
 }
-.logo-icon svg{width:18px;height:18px;fill:white}
-.logo-name{font-size:1.05rem;font-weight:800;color:var(--white);letter-spacing:-.3px}
-.logo-name span{color:var(--blue-light)}
-.nav-links{display:flex;align-items:center;gap:4px}
+.logo-icon svg{width:16px;height:16px;fill:none;stroke:white;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.logo-name{font-size:1rem;font-weight:800;color:var(--navy);letter-spacing:-.3px}
+.logo-name span{color:var(--blue)}
+.nav-links{display:flex;align-items:center;gap:2px}
 .nav-links a{
   color:var(--muted);font-size:.83rem;font-weight:500;
-  text-decoration:none;padding:7px 14px;border-radius:8px;
+  text-decoration:none;padding:6px 12px;border-radius:7px;
   transition:all .15s;
 }
-.nav-links a:hover{color:var(--text);background:var(--surface)}
+.nav-links a:hover{color:var(--navy);background:var(--off)}
 .nav-cta{
-  background:var(--blue);color:var(--white)!important;
-  font-weight:600!important;border-radius:8px;
-  box-shadow:0 0 16px var(--blue-glow);
+  margin-left:8px;
+  background:var(--blue)!important;color:#fff!important;
+  font-weight:600!important;padding:7px 16px!important;
+  border-radius:8px;box-shadow:var(--shadow-blue);
   transition:all .2s!important;
 }
-.nav-cta:hover{background:var(--blue-mid)!important;transform:translateY(-1px);box-shadow:0 0 24px var(--blue-glow)!important}
+.nav-cta:hover{background:var(--blue-mid)!important;transform:translateY(-1px)!important}
 
 /* ─── HERO ─── */
 .hero{
-  min-height:100vh;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:140px 24px 80px;
   text-align:center;
-  padding:120px 24px 80px;
-  position:relative;overflow:hidden;
+  position:relative;
+  overflow:hidden;
 }
-.hero-glow1{
-  position:absolute;top:-200px;left:50%;transform:translateX(-50%);
-  width:900px;height:600px;
-  background:radial-gradient(ellipse at center, rgba(37,99,235,.2) 0%, transparent 65%);
+.hero::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:560px;
+  background:linear-gradient(180deg,var(--blue-pale) 0%,transparent 100%);
   pointer-events:none;
 }
-.hero-glow2{
-  position:absolute;bottom:-200px;left:10%;
-  width:500px;height:500px;
-  background:radial-gradient(circle, rgba(56,189,248,.08) 0%, transparent 65%);
-  pointer-events:none;
-}
+.hero-inner{position:relative;z-index:1;max-width:760px;margin:0 auto}
 .hero-badge{
-  display:inline-flex;align-items:center;gap:7px;
-  background:rgba(37,99,235,.12);
-  border:1px solid rgba(96,165,250,.25);
-  color:var(--blue-light);
-  border-radius:100px;padding:5px 14px 5px 10px;
-  font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
-  margin-bottom:28px;
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--blue-pale2);color:var(--blue);
+  border:1px solid rgba(37,99,235,.2);
+  border-radius:100px;padding:4px 12px 4px 8px;
+  font-size:.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  margin-bottom:24px;
 }
-.badge-dot{width:6px;height:6px;background:var(--blue-light);border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.badge-dot{width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
 .hero h1{
-  font-size:clamp(2.8rem,6vw,5rem);
-  font-weight:900;line-height:1.05;
-  color:var(--white);letter-spacing:-2px;
-  margin-bottom:20px;
-  max-width:800px;
+  font-size:clamp(2.6rem,6vw,4.5rem);
+  font-weight:900;line-height:1.05;letter-spacing:-2px;
+  color:var(--navy);margin-bottom:20px;
 }
 .hero h1 em{
   font-style:normal;
-  background:linear-gradient(120deg,var(--blue-light),var(--accent));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
+  background:linear-gradient(120deg,var(--blue),#6366f1);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
 .hero-sub{
-  font-size:1.1rem;color:var(--muted);line-height:1.7;
-  max-width:520px;margin:0 auto 40px;font-weight:400;
+  font-size:1.1rem;color:var(--muted);line-height:1.75;
+  max-width:520px;margin:0 auto 36px;
 }
-.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.hero-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .btn{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:14px 28px;border-radius:10px;
-  font-size:.92rem;font-weight:700;text-decoration:none;
+  display:inline-flex;align-items:center;gap:7px;
+  padding:12px 22px;border-radius:9px;
+  font-size:.88rem;font-weight:700;text-decoration:none;
   transition:all .2s;cursor:pointer;border:none;font-family:inherit;
+  white-space:nowrap;
 }
 .btn-primary{
   background:var(--blue);color:#fff;
-  box-shadow:0 4px 24px var(--blue-glow);
+  box-shadow:var(--shadow-blue);
 }
-.btn-primary:hover{background:var(--blue-mid);transform:translateY(-2px);box-shadow:0 8px 32px var(--blue-glow)}
-.btn-ghost{
-  background:var(--surface);color:var(--muted);
-  border:1px solid var(--border);
+.btn-primary:hover{background:var(--blue-mid);transform:translateY(-1px);box-shadow:0 12px 36px rgba(37,99,235,.28)}
+.btn-secondary{
+  background:var(--white);color:var(--navy2);
+  border:1.5px solid var(--border2);
+  box-shadow:var(--shadow-sm);
 }
-.btn-ghost:hover{background:var(--surface2);color:var(--text)}
+.btn-secondary:hover{border-color:var(--blue-light);color:var(--blue);background:var(--blue-pale)}
+.hero-proof{
+  display:flex;align-items:center;justify-content:center;gap:20px;
+  margin-top:36px;flex-wrap:wrap;
+}
+.hero-proof-item{display:flex;align-items:center;gap:6px;font-size:.75rem;color:var(--muted)}
+.proof-icon{color:var(--green);font-size:.7rem}
+.proof-div{width:1px;height:14px;background:var(--border)}
 
-/* Hero stats */
-.hero-stats{
-  display:flex;gap:40px;justify-content:center;flex-wrap:wrap;
-  margin-top:60px;padding-top:40px;
-  border-top:1px solid var(--border);
+/* ─── STATS BAR ─── */
+.stats-bar{
+  background:var(--navy);
+  padding:28px 24px;
+  display:flex;justify-content:center;gap:0;
+  flex-wrap:wrap;
 }
-.stat{text-align:center}
-.stat-num{font-size:2rem;font-weight:900;color:var(--white);letter-spacing:-1px;line-height:1}
-.stat-num span{color:var(--blue-light)}
-.stat-label{font-size:.75rem;color:var(--muted);margin-top:4px;font-weight:500;text-transform:uppercase;letter-spacing:.04em}
-
-/* ─── PRODUCT PREVIEW ─── */
-.preview-section{
-  padding:40px 24px 100px;
-  position:relative;z-index:1;
+.stat-item{
+  text-align:center;padding:0 48px;
+  border-right:1px solid rgba(255,255,255,.1);
 }
-.preview-wrap{
-  max-width:1100px;margin:0 auto;
-  position:relative;
-}
-.preview-glow{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:800px;height:400px;
-  background:radial-gradient(ellipse, rgba(37,99,235,.18) 0%, transparent 65%);
-  pointer-events:none;
-}
-.preview-frame{
-  background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:20px;
-  padding:3px;
-  box-shadow:0 40px 120px rgba(0,0,0,.5),0 0 0 1px rgba(37,99,235,.1);
-  position:relative;z-index:1;
-}
-.preview-inner{
-  border-radius:18px;overflow:hidden;background:#0d1528;
-}
-.preview-bar{
-  background:#131c30;padding:12px 16px;
-  display:flex;align-items:center;gap:8px;
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-.preview-dots{display:flex;gap:6px}
-.dot{width:10px;height:10px;border-radius:50%}
-.dot-r{background:#ff5f57}.dot-y{background:#febc2e}.dot-g{background:#28c840}
-.preview-url{
-  flex:1;background:rgba(255,255,255,.05);border-radius:6px;
-  padding:4px 12px;font-size:.7rem;color:var(--muted2);text-align:center;
-  margin:0 12px;
-}
-.preview-img{width:100%;display:block}
-
-/* ─── SECTION BASE ─── */
-section{position:relative;z-index:1}
-.section-label{
-  display:inline-block;
-  font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--blue-light);margin-bottom:12px;
-}
-.section-title{
-  font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;
-  color:var(--white);letter-spacing:-1px;line-height:1.1;
-  margin-bottom:16px;
-}
-.section-sub{font-size:1rem;color:var(--muted);line-height:1.7;max-width:560px}
-
-/* ─── PROBLEM SECTION ─── */
-.problem{padding:100px 24px;text-align:center}
-.problem .section-sub{margin:0 auto 60px}
-.problem-cards{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:16px;max-width:900px;margin:0 auto;
-}
-.problem-card{
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--border);
-  border-radius:16px;padding:28px;text-align:left;
-  transition:all .3s;
-}
-.problem-card:hover{background:rgba(255,255,255,.05);border-color:var(--border2);transform:translateY(-4px)}
-.problem-icon{
-  width:44px;height:44px;border-radius:12px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;margin-bottom:16px;
-  background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.15);
-}
-.problem-card h3{font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:8px}
-.problem-card p{font-size:.83rem;color:var(--muted);line-height:1.6}
-
-/* ─── HOW IT WORKS ─── */
-.how{padding:100px 24px;background:rgba(255,255,255,.015);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.how-inner{max-width:1100px;margin:0 auto}
-.how-header{margin-bottom:64px;max-width:560px}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
-.step{position:relative;padding:32px}
-.step-num{
-  font-size:.7rem;font-weight:800;letter-spacing:.1em;
-  color:var(--blue-light);text-transform:uppercase;margin-bottom:16px;
-  display:flex;align-items:center;gap:8px;
-}
-.step-num::before{
-  content:'';flex:1;height:1px;
-  background:linear-gradient(90deg,var(--blue-light),transparent);
-  max-width:40px;
-}
-.step h3{font-size:1.15rem;font-weight:800;color:var(--white);margin-bottom:10px}
-.step p{font-size:.88rem;color:var(--muted);line-height:1.7}
-.step-connector{
-  position:absolute;right:-12px;top:50%;transform:translateY(-50%);
-  color:var(--border2);font-size:1.5rem;
-}
-@media(max-width:768px){.step-connector{display:none}}
-
-/* ─── MODES ─── */
-.modes{padding:100px 24px;text-align:center}
-.modes-inner{max-width:1100px;margin:0 auto}
-.modes-header{margin-bottom:56px}
-.modes-header .section-sub{margin:0 auto}
-.mode-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;text-align:left}
-.mode-card{
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--border);
-  border-radius:20px;padding:36px;
-  transition:all .3s;position:relative;overflow:hidden;
-}
-.mode-card::before{
-  content:'';
-  position:absolute;top:0;left:0;right:0;height:3px;
-  opacity:0;transition:opacity .3s;
-}
-.mode-card:hover{transform:translateY(-4px);border-color:var(--border2)}
-.mode-card:hover::before{opacity:1}
-.mode-pilot::before{background:linear-gradient(90deg,var(--blue),var(--blue-light))}
-.mode-copilot::before{background:linear-gradient(90deg,var(--accent),var(--blue-light))}
-.mode-autopilot::before{background:linear-gradient(90deg,var(--green),var(--accent))}
-.mode-badge{
-  display:inline-block;padding:4px 12px;border-radius:100px;
-  font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
-  margin-bottom:20px;
-}
-.mode-pilot .mode-badge{background:rgba(37,99,235,.15);color:var(--blue-light);border:1px solid rgba(37,99,235,.2)}
-.mode-copilot .mode-badge{background:rgba(56,189,248,.15);color:var(--accent);border:1px solid rgba(56,189,248,.2)}
-.mode-autopilot .mode-badge{background:rgba(34,197,94,.15);color:var(--green);border:1px solid rgba(34,197,94,.2)}
-.mode-card h3{font-size:1.35rem;font-weight:900;color:var(--white);margin-bottom:10px;letter-spacing:-.5px}
-.mode-card p{font-size:.88rem;color:var(--muted);line-height:1.7;margin-bottom:24px}
-.mode-features{list-style:none;display:flex;flex-direction:column;gap:8px}
-.mode-features li{
-  display:flex;align-items:center;gap:8px;
-  font-size:.82rem;color:var(--muted);
-}
-.mode-features li::before{content:'✓';color:var(--green);font-weight:700;font-size:.8rem}
-.mode-popular{
-  position:absolute;top:16px;right:16px;
-  background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.2);
-  color:var(--green);font-size:.65rem;font-weight:700;
-  letter-spacing:.06em;text-transform:uppercase;
-  padding:3px 10px;border-radius:100px;
-}
-
-/* ─── FEATURE SPLIT ─── */
-.feature-split{
-  padding:100px 24px;
-  border-top:1px solid var(--border);
-}
-.feature-split-inner{
-  max-width:1100px;margin:0 auto;
-  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
-}
-@media(max-width:900px){.feature-split-inner{grid-template-columns:1fr;gap:48px}}
-.feature-text{}
-.feature-list{list-style:none;margin-top:32px;display:flex;flex-direction:column;gap:20px}
-.feature-item{display:flex;gap:14px;align-items:flex-start}
-.feature-icon{
-  width:36px;height:36px;border-radius:10px;flex-shrink:0;
-  background:rgba(37,99,235,.12);border:1px solid rgba(96,165,250,.15);
-  display:flex;align-items:center;justify-content:center;font-size:.9rem;
-  margin-top:2px;
-}
-.feature-item h4{font-size:.9rem;font-weight:700;color:var(--white);margin-bottom:4px}
-.feature-item p{font-size:.82rem;color:var(--muted);line-height:1.6}
-.feature-visual{position:relative}
-.feature-card-stack{position:relative;height:360px}
-.fcard{
-  position:absolute;
-  background:rgba(255,255,255,.04);
-  border:1px solid var(--border);border-radius:16px;padding:20px;
-  backdrop-filter:blur(10px);
-}
-.fcard-main{
-  left:0;right:0;top:0;
-  z-index:3;
-}
-.fcard-behind{
-  left:20px;right:-20px;top:24px;
-  z-index:2;opacity:.5;transform:scale(.96);
-}
-.fcard-far{
-  left:40px;right:-40px;top:48px;
-  z-index:1;opacity:.25;transform:scale(.92);
-}
-.fcard-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.fcard-title{font-size:.8rem;font-weight:700;color:var(--white)}
-.fcard-badge{
-  background:var(--green-dim);color:var(--green);
-  font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:100px;
-  border:1px solid rgba(34,197,94,.2);
-}
-.price-rows{display:flex;flex-direction:column;gap:8px}
-.price-row{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:8px 12px;background:rgba(255,255,255,.03);border-radius:8px;
-  border:1px solid var(--border);
-}
-.price-row-name{font-size:.75rem;color:var(--muted);font-weight:500}
-.price-row-current{font-size:.75rem;color:var(--muted);text-decoration:line-through}
-.price-row-new{font-size:.78rem;font-weight:700;color:var(--green)}
-.price-row-flag{
-  background:rgba(239,68,68,.1);color:#f87171;
-  font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:4px;
-}
-.price-row-flag.ok{background:rgba(34,197,94,.1);color:var(--green)}
-.fcard-stat-row{
-  display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:16px;
-}
-.fcard-stat{
-  background:rgba(255,255,255,.03);border-radius:8px;padding:10px;text-align:center;
-  border:1px solid var(--border);
-}
-.fcard-stat-num{font-size:1rem;font-weight:800;color:var(--white)}
-.fcard-stat-label{font-size:.6rem;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:.04em}
-
-/* ─── TESTIMONIALS / SOCIAL PROOF ─── */
-.social{padding:80px 24px;text-align:center;border-top:1px solid var(--border)}
-.social-inner{max-width:900px;margin:0 auto}
-.social-label{margin-bottom:40px}
-.quote-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-.quote-card{
-  background:rgba(255,255,255,.03);border:1px solid var(--border);
-  border-radius:16px;padding:24px;text-align:left;
-  transition:all .3s;
-}
-.quote-card:hover{border-color:var(--border2);transform:translateY(-2px)}
-.stars{color:#fbbf24;font-size:.75rem;margin-bottom:12px;letter-spacing:2px}
-.quote-text{font-size:.85rem;color:var(--muted);line-height:1.7;font-style:italic;margin-bottom:16px}
-.quote-author{display:flex;align-items:center;gap:10px}
-.author-avatar{
-  width:32px;height:32px;border-radius:50%;
-  background:linear-gradient(135deg,var(--blue),var(--accent));
-  display:flex;align-items:center;justify-content:center;
-  font-size:.75rem;font-weight:800;color:white;
-}
-.author-name{font-size:.8rem;font-weight:700;color:var(--white)}
-.author-role{font-size:.7rem;color:var(--muted);margin-top:1px}
-
-/* ─── CTA ─── */
-.cta-section{
-  padding:120px 24px;text-align:center;position:relative;overflow:hidden;
-}
-.cta-glow{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:800px;height:400px;
-  background:radial-gradient(ellipse, rgba(37,99,235,.25) 0%, transparent 65%);
-  pointer-events:none;
-}
-.cta-inner{position:relative;z-index:1;max-width:640px;margin:0 auto}
-.cta-inner h2{
-  font-size:clamp(2rem,5vw,3.5rem);font-weight:900;
-  color:var(--white);letter-spacing:-1.5px;line-height:1.05;margin-bottom:16px;
-}
-.cta-inner p{font-size:1rem;color:var(--muted);line-height:1.7;margin-bottom:36px}
-.cta-form{
-  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;max-width:480px;margin:0 auto;
-}
-.cta-input{
-  flex:1;min-width:200px;
-  background:rgba(255,255,255,.06);border:1px solid var(--border);
-  color:var(--white);font-family:inherit;font-size:.9rem;
-  padding:13px 18px;border-radius:10px;outline:none;
-  transition:border .2s;
-}
-.cta-input::placeholder{color:var(--muted2)}
-.cta-input:focus{border-color:var(--blue-light)}
-.cta-note{font-size:.72rem;color:var(--muted2);margin-top:14px}
-
-/* ─── FOOTER ─── */
-footer{
-  border-top:1px solid var(--border);
-  padding:40px 48px;
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:16px;
-}
-.footer-left{display:flex;align-items:center;gap:10px}
-.footer-text{font-size:.78rem;color:var(--muted)}
-.footer-links{display:flex;gap:20px}
-.footer-links a{font-size:.75rem;color:var(--muted2);text-decoration:none;transition:color .15s}
-.footer-links a:hover{color:var(--muted)}
-
-/* ─── SCROLL ANIMATIONS ─── */
-.fade-up{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
-.fade-up.visible{opacity:1;transform:translateY(0)}
-.fade-in{opacity:0;transition:opacity .8s ease}
-.fade-in.visible{opacity:1}
-.stagger > *{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
-.stagger.visible > *:nth-child(1){opacity:1;transform:none;transition-delay:.05s}
-.stagger.visible > *:nth-child(2){opacity:1;transform:none;transition-delay:.15s}
-.stagger.visible > *:nth-child(3){opacity:1;transform:none;transition-delay:.25s}
-.stagger.visible > *:nth-child(4){opacity:1;transform:none;transition-delay:.35s}
-
-/* ─── RESPONSIVE ─── */
-@media(max-width:768px){
-  nav{padding:0 20px}
-  .nav-links{display:none}
-  .hero h1{letter-spacing:-1px}
-  .hero-stats{gap:24px}
-  footer{padding:32px 20px;flex-direction:column;text-align:center}
-  .feature-split-inner{grid-template-columns:1fr}
-  .feature-card-stack{display:none}
-}
+.stat-item:last-child{border:none}
+.stat-num{font-size:1.9rem;font-weight:900;color:#fff;letter-spacing:-1px;line-height:1}
+.stat-num em{font-style:normal;color:var(--blue-light)}
+.stat-label{font-size:.7rem;color:rgba(255,255,255,.45);margin-top:4px;font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+@media(max-width:600px){.stat-item{padding:16px 24px;border-right:none;border-bottom:1px solid rgba(255,255,255,.1)}.stat-item:last-child{border:none}}
 
 /* ─── TICKER ─── */
 .ticker-wrap{
   overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-  background:rgba(255,255,255,.02);padding:14px 0;
+  background:var(--off);padding:13px 0;
   white-space:nowrap;
 }
-.ticker{display:inline-flex;animation:tick 30s linear infinite}
+.ticker{display:inline-flex;animation:tick 35s linear infinite}
 @keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .ticker-item{
   display:inline-flex;align-items:center;gap:8px;
-  padding:0 32px;font-size:.75rem;font-weight:600;color:var(--muted);
+  padding:0 28px;font-size:.73rem;font-weight:500;color:var(--muted);
 }
-.ticker-item span{color:var(--blue-light)}
-.ticker-dot{width:4px;height:4px;background:var(--border2);border-radius:50%}
+.ticker-name{color:var(--navy2);font-weight:600}
+.ticker-sep{color:var(--border2);font-size:.6rem}
+.ticker-flag{
+  background:var(--amber-pale);color:var(--amber);
+  border:1px solid #fde68a;
+  font-size:.62rem;font-weight:700;padding:2px 7px;border-radius:4px;
+}
+.ticker-flag.ok{background:var(--green-pale);color:var(--green);border-color:var(--green-border)}
 
-/* ─── COUNTER ANIMATION ─── */
-.count{display:inline}
+/* ─── PREVIEW ─── */
+.preview-section{padding:72px 24px 0;background:var(--white)}
+.preview-inner{max-width:1080px;margin:0 auto}
+.preview-label{text-align:center;margin-bottom:32px}
+.section-tag{
+  display:inline-block;font-size:.68rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:8px;
+}
+.preview-frame{
+  border-radius:16px;overflow:hidden;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow-lg);
+}
+.preview-bar{
+  background:var(--off);border-bottom:1px solid var(--border);
+  padding:10px 16px;display:flex;align-items:center;gap:8px;
+}
+.preview-dots{display:flex;gap:5px}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot-r{background:#ff5f57}.dot-y{background:#febc2e}.dot-g{background:#28c840}
+.preview-url{
+  flex:1;background:var(--white);border:1px solid var(--border);border-radius:5px;
+  padding:3px 12px;font-size:.68rem;color:var(--muted2);text-align:center;
+  margin:0 12px;max-width:300px;
+}
+.preview-img{width:100%;display:block;max-height:480px;object-fit:cover;object-position:top}
+.preview-placeholder{
+  background:linear-gradient(135deg,var(--blue-pale),var(--off2));
+  min-height:320px;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:12px;
+}
+
+/* ─── SECTION LAYOUT ─── */
+section{position:relative}
+.section-head{text-align:center;margin-bottom:56px}
+.section-title{
+  font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:900;
+  color:var(--navy);letter-spacing:-1px;line-height:1.1;margin-bottom:12px;
+}
+.section-sub{font-size:.95rem;color:var(--muted);line-height:1.75;max-width:500px;margin:0 auto}
+
+/* ─── PROBLEM ─── */
+.problem{padding:96px 24px;background:var(--off)}
+.problem-cards{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:16px;max-width:940px;margin:0 auto;
+}
+.pcard{
+  background:var(--white);border:1px solid var(--border);border-radius:14px;
+  padding:28px;box-shadow:var(--shadow-sm);
+  transition:all .25s;
+}
+.pcard:hover{box-shadow:var(--shadow);border-color:var(--blue-pale2);transform:translateY(-2px)}
+.pcard-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:var(--red-pale);border:1px solid #fecaca;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;margin-bottom:16px;
+}
+.pcard h3{font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:7px}
+.pcard p{font-size:.82rem;color:var(--muted);line-height:1.65}
+
+/* ─── HOW ─── */
+.how{padding:96px 24px;background:var(--white)}
+.how-inner{max-width:1080px;margin:0 auto}
+.steps{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border:1px solid var(--border);border-radius:16px;overflow:hidden;
+  box-shadow:var(--shadow-sm);
+}
+@media(max-width:768px){.steps{grid-template-columns:1fr}}
+.step{
+  padding:36px 32px;border-right:1px solid var(--border);
+  background:var(--white);position:relative;
+}
+.step:last-child{border-right:none}
+@media(max-width:768px){.step{border-right:none;border-bottom:1px solid var(--border)}.step:last-child{border-bottom:none}}
+.step-num{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--navy);color:#fff;
+  font-size:.75rem;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;
+}
+.step h3{font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:8px}
+.step p{font-size:.83rem;color:var(--muted);line-height:1.65}
+.step-arrow{
+  position:absolute;top:50%;right:-14px;
+  width:28px;height:28px;background:var(--white);
+  border:1px solid var(--border);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.6rem;color:var(--blue);z-index:2;
+  transform:translateY(-50%);
+}
+@media(max-width:768px){.step-arrow{display:none}}
+
+/* ─── MODES ─── */
+.modes{padding:96px 24px;background:var(--off)}
+.modes-inner{max-width:1080px;margin:0 auto}
+.mode-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.mcard{
+  background:var(--white);border:1.5px solid var(--border);
+  border-radius:16px;padding:32px;
+  box-shadow:var(--shadow-sm);transition:all .25s;
+  position:relative;overflow:hidden;
+}
+.mcard:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.mcard-top-bar{height:3px;position:absolute;top:0;left:0;right:0}
+.mcard-pilot .mcard-top-bar{background:linear-gradient(90deg,var(--blue),#818cf8)}
+.mcard-copilot .mcard-top-bar{background:linear-gradient(90deg,#6366f1,#a78bfa)}
+.mcard-autopilot .mcard-top-bar{background:linear-gradient(90deg,var(--green),#34d399)}
+.mcard-badge{
+  display:inline-block;padding:3px 10px;border-radius:100px;
+  font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  margin-bottom:18px;
+}
+.mcard-pilot .mcard-badge{background:var(--blue-pale);color:var(--blue);border:1px solid var(--blue-pale2)}
+.mcard-copilot .mcard-badge{background:#ede9fe;color:#7c3aed;border:1px solid #ddd6fe}
+.mcard-autopilot .mcard-badge{background:var(--green-pale);color:var(--green);border:1px solid var(--green-border)}
+.mcard h3{font-size:1.2rem;font-weight:900;color:var(--navy);margin-bottom:8px;letter-spacing:-.4px}
+.mcard-desc{font-size:.84rem;color:var(--muted);line-height:1.65;margin-bottom:22px}
+.mcard-features{list-style:none;display:flex;flex-direction:column;gap:7px}
+.mcard-features li{
+  display:flex;align-items:flex-start;gap:8px;
+  font-size:.81rem;color:var(--navy3);
+}
+.check{color:var(--green);font-size:.75rem;margin-top:2px;flex-shrink:0}
+.popular-chip{
+  position:absolute;top:16px;right:16px;
+  background:var(--green-pale);border:1px solid var(--green-border);
+  color:var(--green);font-size:.62rem;font-weight:700;
+  letter-spacing:.05em;text-transform:uppercase;
+  padding:3px 9px;border-radius:100px;
+}
+
+/* ─── FEATURE SPLIT ─── */
+.feature-split{padding:96px 24px;background:var(--white)}
+.feature-split-inner{
+  max-width:1080px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;
+}
+@media(max-width:900px){.feature-split-inner{grid-template-columns:1fr;gap:48px}}
+.feature-list{list-style:none;margin-top:28px;display:flex;flex-direction:column;gap:16px}
+.fitem{display:flex;gap:14px;align-items:flex-start}
+.fitem-icon{
+  width:36px;height:36px;border-radius:9px;flex-shrink:0;
+  background:var(--blue-pale);border:1px solid var(--blue-pale2);
+  display:flex;align-items:center;justify-content:center;font-size:.85rem;
+  margin-top:2px;
+}
+.fitem h4{font-size:.88rem;font-weight:700;color:var(--navy);margin-bottom:3px}
+.fitem p{font-size:.8rem;color:var(--muted);line-height:1.6}
+
+/* ─── REVIEW CARD (visual) ─── */
+.review-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:16px;box-shadow:var(--shadow-lg);overflow:hidden;
+}
+.rc-header{
+  padding:16px 20px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--off);
+}
+.rc-title{font-size:.82rem;font-weight:700;color:var(--navy)}
+.rc-badge{
+  background:var(--amber-pale);color:var(--amber);
+  border:1px solid #fde68a;
+  font-size:.65rem;font-weight:700;padding:3px 9px;border-radius:100px;
+}
+.rc-rows{padding:8px 0}
+.rc-row{
+  display:grid;grid-template-columns:1fr auto auto auto;gap:8px;
+  align-items:center;padding:10px 20px;border-bottom:1px solid var(--border);
+  transition:background .15s;
+}
+.rc-row:last-child{border:none}
+.rc-row:hover{background:var(--off)}
+.rc-name{font-size:.76rem;color:var(--navy2);font-weight:500}
+.rc-old{font-size:.73rem;color:var(--muted2);text-decoration:line-through}
+.rc-new{font-size:.76rem;font-weight:700;color:var(--green)}
+.rc-tag{
+  font-size:.6rem;font-weight:700;padding:2px 7px;border-radius:4px;
+  white-space:nowrap;
+}
+.rc-tag.stale{background:var(--amber-pale);color:var(--amber)}
+.rc-tag.low{background:#fef2f2;color:#dc2626}
+.rc-tag.ok{background:var(--green-pale);color:var(--green)}
+.rc-footer{
+  padding:12px 20px;background:var(--off);border-top:1px solid var(--border);
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;
+}
+.rc-stat{text-align:center}
+.rc-stat-num{font-size:1rem;font-weight:800;color:var(--navy)}
+.rc-stat-num.green{color:var(--green)}
+.rc-stat-label{font-size:.6rem;color:var(--muted2);text-transform:uppercase;letter-spacing:.04em}
+
+/* ─── TESTIMONIALS ─── */
+.testimonials{padding:96px 24px;background:var(--off)}
+.testimonials-inner{max-width:940px;margin:0 auto}
+.quote-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:48px}
+.qcard{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:14px;padding:24px;box-shadow:var(--shadow-sm);
+  transition:all .2s;
+}
+.qcard:hover{box-shadow:var(--shadow);border-color:var(--blue-pale2);transform:translateY(-2px)}
+.stars{color:#f59e0b;font-size:.7rem;letter-spacing:2px;margin-bottom:12px}
+.qtext{font-size:.83rem;color:var(--navy3);line-height:1.7;font-style:italic;margin-bottom:16px}
+.qauthor{display:flex;align-items:center;gap:10px}
+.qavatar{
+  width:32px;height:32px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--blue),#818cf8);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;font-weight:800;color:#fff;
+}
+.qname{font-size:.8rem;font-weight:700;color:var(--navy)}
+.qrole{font-size:.7rem;color:var(--muted);margin-top:1px}
+
+/* ─── CTA ─── */
+.cta-section{
+  padding:96px 24px;background:var(--navy);
+  text-align:center;position:relative;overflow:hidden;
+}
+.cta-glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:700px;height:300px;
+  background:radial-gradient(ellipse,rgba(37,99,235,.3) 0%,transparent 65%);
+  pointer-events:none;
+}
+.cta-inner{position:relative;z-index:1;max-width:580px;margin:0 auto}
+.cta-inner h2{
+  font-size:clamp(2rem,4.5vw,3rem);font-weight:900;
+  color:#fff;letter-spacing:-1.5px;line-height:1.05;margin-bottom:14px;
+}
+.cta-inner p{font-size:.95rem;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:32px}
+.cta-form{
+  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
+  max-width:440px;margin:0 auto;
+}
+.cta-input{
+  flex:1;min-width:190px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  color:#fff;font-family:inherit;font-size:.88rem;
+  padding:12px 16px;border-radius:9px;outline:none;transition:border .2s;
+}
+.cta-input::placeholder{color:rgba(255,255,255,.3)}
+.cta-input:focus{border-color:rgba(255,255,255,.3)}
+.cta-note{font-size:.7rem;color:rgba(255,255,255,.3);margin-top:14px}
+
+/* ─── FOOTER ─── */
+footer{
+  background:var(--navy);
+  border-top:1px solid rgba(255,255,255,.06);
+  padding:36px 48px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+}
+.footer-logo{display:flex;align-items:center;gap:8px}
+.footer-icon{width:26px;height:26px;background:rgba(255,255,255,.08);border-radius:6px;display:flex;align-items:center;justify-content:center}
+.footer-icon svg{width:12px;height:12px;fill:none;stroke:rgba(255,255,255,.5);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.3)}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-size:.72rem;color:rgba(255,255,255,.3);text-decoration:none;transition:color .15s}
+.footer-links a:hover{color:rgba(255,255,255,.6)}
+
+/* ─── ANIMATIONS ─── */
+.fade-up{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.fade-up.visible{opacity:1;transform:none}
+.fade-in{opacity:0;transition:opacity .8s ease}
+.fade-in.visible{opacity:1}
+.stagger>*{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+.stagger.visible>*:nth-child(1){opacity:1;transform:none;transition-delay:.04s}
+.stagger.visible>*:nth-child(2){opacity:1;transform:none;transition-delay:.12s}
+.stagger.visible>*:nth-child(3){opacity:1;transform:none;transition-delay:.20s}
+.stagger.visible>*:nth-child(4){opacity:1;transform:none;transition-delay:.28s}
+
+@media(max-width:768px){
+  nav{padding:0 20px}
+  .nav-links{display:none}
+  footer{padding:28px 20px;flex-direction:column;text-align:center}
+  .feature-split-inner{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -497,7 +479,7 @@ footer{
 <nav id="nav">
   <a class="logo" href="#">
     <div class="logo-icon">
-      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
     </div>
     <span class="logo-name">Vet<span>INC</span></span>
   </a>
@@ -511,108 +493,100 @@ footer{
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-glow1"></div>
-  <div class="hero-glow2"></div>
-  <div class="hero-badge">
-    <span class="badge-dot"></span>
-    Now live for Canadian clinics
-  </div>
-  <h1>The modern way to keep<br/>your prices <em>current.</em></h1>
-  <p class="hero-sub">
-    Your clinic runs on hundreds of service codes. Vet INC watches all of them —
-    flagging what's drifted and keeping your pricing current without the manual work.
-  </p>
-  <div class="hero-btns">
-    <a href="https://vetinc.ca/setup.html" class="btn btn-primary">Get started free →</a>
-    <a href="#how" class="btn btn-ghost">See how it works</a>
-  </div>
-  <div class="hero-stats stagger">
-    <div class="stat">
-      <div class="stat-num"><span class="count" data-target="1400">0</span>+</div>
-      <div class="stat-label">Service codes monitored</div>
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="badge-dot"></span>Now live for Canadian clinics</div>
+    <h1>The modern way to keep<br/>your prices <em>current.</em></h1>
+    <p class="hero-sub">Your clinic runs on hundreds of service codes. Vet INC watches all of them — flagging what's drifted and keeping your pricing current, automatically.</p>
+    <div class="hero-actions">
+      <a href="https://vetinc.ca/setup.html" class="btn btn-primary">Get started free →</a>
+      <a href="#how" class="btn btn-secondary">See how it works</a>
     </div>
-    <div class="stat">
-      <div class="stat-num"><span class="count" data-target="3">0</span>–<span class="count" data-target="5">0</span><span>%</span></div>
-      <div class="stat-label">Revenue lost to pricing drift</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num"><span>Zero</span></div>
-      <div class="stat-label">Manual work required</div>
+    <div class="hero-proof">
+      <span class="hero-proof-item"><span class="proof-icon">✓</span> No setup fee</span>
+      <span class="proof-div"></span>
+      <span class="hero-proof-item"><span class="proof-icon">✓</span> Works with AVImark & Cornerstone</span>
+      <span class="proof-div"></span>
+      <span class="hero-proof-item"><span class="proof-icon">✓</span> Cancel anytime</span>
     </div>
   </div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker">
-    <div class="ticker-item"><span>Annual Wellness Exam</span> — last updated 847 days ago <span class="ticker-dot"></span></div>
-    <div class="ticker-item"><span>Dental Cleaning (Cat)</span> — $15 below regional average <span class="ticker-dot"></span></div>
-    <div class="ticker-item"><span>Spay / Neuter</span> — flagged for review <span class="ticker-dot"></span></div>
-    <div class="ticker-item"><span>CBC Panel</span> — updated automatically ✓ <span class="ticker-dot"></span></div>
-    <div class="ticker-item"><span>X-Ray (2 views)</span> — 18 months since last change <span class="ticker-dot"></span></div>
-    <div class="ticker-item"><span>Rabies Vaccine</span> — 6% under market <span class="ticker-dot"></span></div>
-    <div class="ticker-item"><span>IV Fluid Therapy</span> — cost increased, price unchanged <span class="ticker-dot"></span></div>
-    <!-- duplicate for seamless loop -->
-    <div class="ticker-item"><span>Annual Wellness Exam</span> — last updated 847 days ago <span class="ticker-dot"></span></div>
-    <div class="ticker-item"><span>Dental Cleaning (Cat)</span> — $15 below regional average <span class="ticker-dot"></span></div>
-    <div class="ticker-item"><span>Spay / Neuter</span> — flagged for review <span class="ticker-dot"></span></div>
-    <div class="ticker-item"><span>CBC Panel</span> — updated automatically ✓ <span class="ticker-dot"></span></div>
-    <div class="ticker-item"><span>X-Ray (2 views)</span> — 18 months since last change <span class="ticker-dot"></span></div>
-    <div class="ticker-item"><span>Rabies Vaccine</span> — 6% under market <span class="ticker-dot"></span></div>
-    <div class="ticker-item"><span>IV Fluid Therapy</span> — cost increased, price unchanged <span class="ticker-dot"></span></div>
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num"><span class="count" data-target="1400">0</span><em>+</em></div>
+    <div class="stat-label">Service codes monitored</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num"><em>3</em>–<em>5</em>%</div>
+    <div class="stat-label">Revenue lost to pricing drift</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">Zero</div>
+    <div class="stat-label">Manual work required</div>
   </div>
 </div>
 
-<!-- PRODUCT PREVIEW -->
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div class="ticker-item"><span class="ticker-name">Annual Wellness Exam</span> <span class="ticker-sep">·</span> last updated 847 days ago <span class="ticker-flag">Stale</span></div>
+    <div class="ticker-item"><span class="ticker-name">Dental Cleaning (Cat)</span> <span class="ticker-sep">·</span> $15 below regional average <span class="ticker-flag">Under</span></div>
+    <div class="ticker-item"><span class="ticker-name">Spay / Neuter</span> <span class="ticker-sep">·</span> flagged for review <span class="ticker-flag">Review</span></div>
+    <div class="ticker-item"><span class="ticker-name">CBC Panel</span> <span class="ticker-sep">·</span> updated automatically <span class="ticker-flag ok">✓ Current</span></div>
+    <div class="ticker-item"><span class="ticker-name">X-Ray (2 views)</span> <span class="ticker-sep">·</span> 18 months since last change <span class="ticker-flag">Stale</span></div>
+    <div class="ticker-item"><span class="ticker-name">Rabies Vaccine</span> <span class="ticker-sep">·</span> 6% under market <span class="ticker-flag">Under</span></div>
+    <div class="ticker-item"><span class="ticker-name">IV Fluid Therapy</span> <span class="ticker-sep">·</span> cost increased, price unchanged <span class="ticker-flag">Review</span></div>
+    <div class="ticker-item"><span class="ticker-name">Annual Wellness Exam</span> <span class="ticker-sep">·</span> last updated 847 days ago <span class="ticker-flag">Stale</span></div>
+    <div class="ticker-item"><span class="ticker-name">Dental Cleaning (Cat)</span> <span class="ticker-sep">·</span> $15 below regional average <span class="ticker-flag">Under</span></div>
+    <div class="ticker-item"><span class="ticker-name">Spay / Neuter</span> <span class="ticker-sep">·</span> flagged for review <span class="ticker-flag">Review</span></div>
+    <div class="ticker-item"><span class="ticker-name">CBC Panel</span> <span class="ticker-sep">·</span> updated automatically <span class="ticker-flag ok">✓ Current</span></div>
+    <div class="ticker-item"><span class="ticker-name">X-Ray (2 views)</span> <span class="ticker-sep">·</span> 18 months since last change <span class="ticker-flag">Stale</span></div>
+    <div class="ticker-item"><span class="ticker-name">Rabies Vaccine</span> <span class="ticker-sep">·</span> 6% under market <span class="ticker-flag">Under</span></div>
+    <div class="ticker-item"><span class="ticker-name">IV Fluid Therapy</span> <span class="ticker-sep">·</span> cost increased, price unchanged <span class="ticker-flag">Review</span></div>
+  </div>
+</div>
+
+<!-- PREVIEW -->
 <section class="preview-section fade-in">
-  <div class="preview-wrap">
-    <div class="preview-glow"></div>
+  <div class="preview-inner">
+    <div class="preview-label">
+      <div class="section-tag">The dashboard</div>
+    </div>
     <div class="preview-frame">
-      <div class="preview-inner">
-        <div class="preview-bar">
-          <div class="preview-dots">
-            <div class="dot dot-r"></div>
-            <div class="dot dot-y"></div>
-            <div class="dot dot-g"></div>
-          </div>
-          <div class="preview-url">app.vetinc.ca — Pricing Intelligence Dashboard</div>
-        </div>
-        <img class="preview-img" src="https://jack108510.github.io/vetinc-dashboard/v14-full.png" alt="Vet INC Dashboard" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-        <!-- Fallback if screenshot not available -->
-        <div style="display:none;background:#0d1528;min-height:340px;align-items:center;justify-content:center;flex-direction:column;gap:12px;padding:40px">
-          <div style="width:60px;height:60px;background:rgba(37,99,235,.15);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem">📊</div>
-          <p style="color:var(--muted);font-size:.85rem">Pricing Intelligence Dashboard</p>
-        </div>
+      <div class="preview-bar">
+        <div class="preview-dots"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+        <div class="preview-url">app.vetinc.ca — Pricing Intelligence</div>
       </div>
+      <img src="https://jack108510.github.io/vetinc-dashboard/v14-full.png" alt="Vet INC Dashboard" style="width:100%;display:block" onerror="this.style.display='none'"/>
     </div>
   </div>
 </section>
 
 <!-- PROBLEM -->
 <section class="problem" id="problem">
-  <div class="fade-up">
-    <div class="section-label">The problem</div>
-    <h2 class="section-title">Prices drift. Nobody notices until it's too late.</h2>
-    <p class="section-sub">
-      Costs go up every year — staff, drugs, equipment, supplies. Most clinic prices don't keep pace.
-      Not from negligence. From having 1,400 other things to manage.
-    </p>
-  </div>
-  <div class="problem-cards stagger">
-    <div class="problem-card">
-      <div class="problem-icon">📅</div>
-      <h3>Years between updates</h3>
-      <p>The average clinic hasn't touched most service codes in 18–36 months. In that time, costs have moved. Prices haven't.</p>
+  <div class="problem-inner" style="max-width:940px;margin:0 auto">
+    <div class="section-head fade-up">
+      <div class="section-tag">The problem</div>
+      <h2 class="section-title">Prices drift. Nobody has time to notice.</h2>
+      <p class="section-sub">Costs go up every year. Most clinic prices don't keep pace — not from negligence, but from having 1,400 other things to manage.</p>
     </div>
-    <div class="problem-card">
-      <div class="problem-icon">📋</div>
-      <h3>Too many codes to audit</h3>
-      <p>A typical practice has 500–2,000 service codes. Nobody has the bandwidth to review them all. So they don't.</p>
-    </div>
-    <div class="problem-card">
-      <div class="problem-icon">💸</div>
-      <h3>Quiet revenue erosion</h3>
-      <p>Pricing drift doesn't show up as a line item on any report. It shows up as margin that quietly disappears year over year.</p>
+    <div class="problem-cards stagger">
+      <div class="pcard">
+        <div class="pcard-icon">📅</div>
+        <h3>Years between updates</h3>
+        <p>The average clinic hasn't touched most service codes in 18–36 months. In that time, costs have moved. Prices haven't.</p>
+      </div>
+      <div class="pcard">
+        <div class="pcard-icon">📋</div>
+        <h3>Too many codes to audit</h3>
+        <p>A typical practice has 500–2,000 service codes. Nobody has the bandwidth to review them all, so they don't.</p>
+      </div>
+      <div class="pcard">
+        <div class="pcard-icon">💸</div>
+        <h3>Quiet revenue erosion</h3>
+        <p>Pricing drift doesn't show up as a line item. It shows up as margin that quietly disappears, year over year.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -620,26 +594,28 @@ footer{
 <!-- HOW IT WORKS -->
 <section class="how" id="how">
   <div class="how-inner">
-    <div class="how-header fade-up">
-      <div class="section-label">How it works</div>
+    <div class="section-head fade-up">
+      <div class="section-tag">How it works</div>
       <h2 class="section-title">Three steps. Zero manual work.</h2>
       <p class="section-sub">Connect your practice management software once. Vet INC handles the rest.</p>
     </div>
     <div class="steps stagger">
       <div class="step">
-        <div class="step-num">Step 01</div>
+        <div class="step-num">1</div>
         <h3>Connect your data</h3>
         <p>Upload your current price list from AVImark, Cornerstone, EzyVet, or any major PMS. Takes under five minutes. No IT required.</p>
+        <div class="step-arrow">→</div>
       </div>
       <div class="step">
-        <div class="step-num">Step 02</div>
+        <div class="step-num">2</div>
         <h3>We monitor everything</h3>
-        <p>Vet INC continuously tracks your full service list — comparing against cost data, time since last update, and regional benchmarks. Automatically.</p>
+        <p>Vet INC continuously tracks your full service list — comparing against cost data, time since last update, and regional benchmarks.</p>
+        <div class="step-arrow">→</div>
       </div>
       <div class="step">
-        <div class="step-num">Step 03</div>
+        <div class="step-num">3</div>
         <h3>You stay current</h3>
-        <p>When something drifts, you get an alert with a clear suggestion. Approve it, adjust it, or let Autopilot handle it. Your call, always.</p>
+        <p>When something drifts, you get a clear suggestion. Approve it, adjust it, or let Autopilot handle it. Your call, always.</p>
       </div>
     </div>
   </div>
@@ -648,44 +624,47 @@ footer{
 <!-- MODES -->
 <section class="modes" id="modes">
   <div class="modes-inner">
-    <div class="modes-header fade-up">
-      <div class="section-label">Control levels</div>
+    <div class="section-head fade-up">
+      <div class="section-tag">Control levels</div>
       <h2 class="section-title">As involved as you want to be.</h2>
       <p class="section-sub">Every clinic is different. Choose how much Vet INC does on its own.</p>
     </div>
     <div class="mode-cards stagger">
-      <div class="mode-card mode-pilot">
-        <div class="mode-badge">Pilot</div>
+      <div class="mcard mcard-pilot">
+        <div class="mcard-top-bar"></div>
+        <div class="mcard-badge">Pilot</div>
         <h3>You review everything.</h3>
-        <p>Vet INC monitors your price list and surfaces suggestions. You make every call. Full control, no surprises.</p>
-        <ul class="mode-features">
-          <li>Full price list monitoring</li>
-          <li>Drift alerts & suggestions</li>
-          <li>One-click review interface</li>
-          <li>You approve all changes</li>
+        <p class="mcard-desc">Vet INC monitors your price list and surfaces suggestions. You make every call. Full control, no surprises.</p>
+        <ul class="mcard-features">
+          <li><span class="check">✓</span> Full price list monitoring</li>
+          <li><span class="check">✓</span> Drift alerts & suggestions</li>
+          <li><span class="check">✓</span> One-click review interface</li>
+          <li><span class="check">✓</span> You approve all changes</li>
         </ul>
       </div>
-      <div class="mode-card mode-copilot">
-        <div class="mode-badge">Co-pilot</div>
-        <div class="mode-popular">Most popular</div>
+      <div class="mcard mcard-copilot">
+        <div class="mcard-top-bar"></div>
+        <div class="mcard-badge">Co-pilot</div>
+        <div class="popular-chip">Most popular</div>
         <h3>We suggest. You approve.</h3>
-        <p>Vet INC does the analysis and prepares updates. You review a weekly summary and approve what looks right.</p>
-        <ul class="mode-features">
-          <li>Everything in Pilot</li>
-          <li>Batched weekly reviews</li>
-          <li>Prioritized by impact</li>
-          <li>Approve or adjust each item</li>
+        <p class="mcard-desc">Vet INC does the analysis and prepares updates. You review a weekly summary and approve what looks right.</p>
+        <ul class="mcard-features">
+          <li><span class="check">✓</span> Everything in Pilot</li>
+          <li><span class="check">✓</span> Batched weekly reviews</li>
+          <li><span class="check">✓</span> Prioritized by impact</li>
+          <li><span class="check">✓</span> Approve or adjust each item</li>
         </ul>
       </div>
-      <div class="mode-card mode-autopilot">
-        <div class="mode-badge">Autopilot</div>
+      <div class="mcard mcard-autopilot">
+        <div class="mcard-top-bar"></div>
+        <div class="mcard-badge">Autopilot</div>
         <h3>Set it and forget it.</h3>
-        <p>Within limits you define, Vet INC updates prices automatically. You get a monthly summary of what changed and why.</p>
-        <ul class="mode-features">
-          <li>Everything in Co-pilot</li>
-          <li>Auto-apply within your thresholds</li>
-          <li>Monthly change summary</li>
-          <li>Override anytime</li>
+        <p class="mcard-desc">Within limits you define, Vet INC updates prices automatically. You get a monthly summary of what changed and why.</p>
+        <ul class="mcard-features">
+          <li><span class="check">✓</span> Everything in Co-pilot</li>
+          <li><span class="check">✓</span> Auto-apply within your thresholds</li>
+          <li><span class="check">✓</span> Monthly change summary</li>
+          <li><span class="check">✓</span> Override anytime</li>
         </ul>
       </div>
     </div>
@@ -695,142 +674,97 @@ footer{
 <!-- FEATURE SPLIT -->
 <section class="feature-split" id="features">
   <div class="feature-split-inner">
-    <div class="feature-text fade-up">
-      <div class="section-label">Built for veterinary practices</div>
-      <h2 class="section-title">Every code. Always watched.</h2>
+    <div class="fade-up">
+      <div class="section-tag">Built for veterinary practices</div>
+      <h2 class="section-title">Every code.<br/>Always watched.</h2>
       <p class="section-sub">Vet INC was built for the complexity of veterinary pricing — not adapted from generic software.</p>
       <ul class="feature-list">
-        <li class="feature-item">
-          <div class="feature-icon">🔍</div>
-          <div>
-            <h4>Full-list monitoring</h4>
-            <p>Every service code in your PMS is tracked. Nothing falls through the cracks because it was too minor to notice.</p>
-          </div>
+        <li class="fitem">
+          <div class="fitem-icon">🔍</div>
+          <div><h4>Full-list monitoring</h4><p>Every service code in your PMS is tracked. Nothing slips through because it was too minor to notice.</p></div>
         </li>
-        <li class="feature-item">
-          <div class="feature-icon">📈</div>
-          <div>
-            <h4>Drift detection</h4>
-            <p>We track time since last update, cost changes, and regional benchmarks — and surface the items that actually need attention.</p>
-          </div>
+        <li class="fitem">
+          <div class="fitem-icon">📈</div>
+          <div><h4>Drift detection</h4><p>We track time since last update, cost changes, and regional benchmarks — surfacing only what actually needs attention.</p></div>
         </li>
-        <li class="feature-item">
-          <div class="feature-icon">🔗</div>
-          <div>
-            <h4>PMS compatible</h4>
-            <p>Works with AVImark, Cornerstone, EzyVet, Impromed, and more. No custom integrations needed.</p>
-          </div>
+        <li class="fitem">
+          <div class="fitem-icon">🔗</div>
+          <div><h4>PMS compatible</h4><p>Works with AVImark, Cornerstone, EzyVet, Impromed, and more. No custom integrations needed.</p></div>
         </li>
-        <li class="feature-item">
-          <div class="feature-icon">🔒</div>
-          <div>
-            <h4>You're always in control</h4>
-            <p>No pricing change happens without your input — unless you've explicitly turned on Autopilot and set your own limits.</p>
-          </div>
+        <li class="fitem">
+          <div class="fitem-icon">🔒</div>
+          <div><h4>Always in control</h4><p>No pricing change happens without your input — unless you've explicitly set your own Autopilot limits.</p></div>
         </li>
       </ul>
     </div>
-    <div class="feature-visual fade-in">
-      <div class="feature-card-stack">
-        <div class="fcard fcard-far"></div>
-        <div class="fcard fcard-behind"></div>
-        <div class="fcard fcard-main">
-          <div class="fcard-header">
-            <span class="fcard-title">Pricing Review — Weekly Batch</span>
-            <span class="fcard-badge">14 items flagged</span>
-          </div>
-          <div class="price-rows">
-            <div class="price-row">
-              <span class="price-row-name">Annual Wellness Exam (Canine)</span>
-              <span class="price-row-current">$68</span>
-              <span class="price-row-new">$79 ↑</span>
-              <span class="price-row-flag">Stale 847d</span>
-            </div>
-            <div class="price-row">
-              <span class="price-row-name">Dental Cleaning — Cat</span>
-              <span class="price-row-current">$210</span>
-              <span class="price-row-new">$235 ↑</span>
-              <span class="price-row-flag">−$15 avg</span>
-            </div>
-            <div class="price-row">
-              <span class="price-row-name">CBC Panel</span>
-              <span class="price-row-current">$55</span>
-              <span class="price-row-new">$55</span>
-              <span class="price-row-flag ok">OK</span>
-            </div>
-            <div class="price-row">
-              <span class="price-row-name">Spay — Small Dog (&lt;10kg)</span>
-              <span class="price-row-current">$290</span>
-              <span class="price-row-new">$320 ↑</span>
-              <span class="price-row-flag">Cost +12%</span>
-            </div>
-            <div class="price-row">
-              <span class="price-row-name">X-Ray — 2 Views</span>
-              <span class="price-row-current">$85</span>
-              <span class="price-row-new">$98 ↑</span>
-              <span class="price-row-flag">Stale 548d</span>
-            </div>
-          </div>
-          <div class="fcard-stat-row">
-            <div class="fcard-stat">
-              <div class="fcard-stat-num">14</div>
-              <div class="fcard-stat-label">Flagged</div>
-            </div>
-            <div class="fcard-stat">
-              <div class="fcard-stat-num" style="color:var(--green)">+$680</div>
-              <div class="fcard-stat-label">Est. monthly</div>
-            </div>
-            <div class="fcard-stat">
-              <div class="fcard-stat-num">1,386</div>
-              <div class="fcard-stat-label">Monitored</div>
-            </div>
-          </div>
+    <div class="review-card fade-in">
+      <div class="rc-header">
+        <span class="rc-title">Weekly Pricing Review</span>
+        <span class="rc-badge">14 flagged</span>
+      </div>
+      <div class="rc-rows">
+        <div class="rc-row">
+          <span class="rc-name">Annual Wellness Exam (Dog)</span>
+          <span class="rc-old">$68</span>
+          <span class="rc-new">$79 ↑</span>
+          <span class="rc-tag stale">Stale 847d</span>
         </div>
+        <div class="rc-row">
+          <span class="rc-name">Dental Cleaning — Cat</span>
+          <span class="rc-old">$210</span>
+          <span class="rc-new">$235 ↑</span>
+          <span class="rc-tag low">−$15 avg</span>
+        </div>
+        <div class="rc-row">
+          <span class="rc-name">CBC Panel</span>
+          <span class="rc-old">$55</span>
+          <span class="rc-new">$55</span>
+          <span class="rc-tag ok">✓ OK</span>
+        </div>
+        <div class="rc-row">
+          <span class="rc-name">Spay — Small Dog (&lt;10kg)</span>
+          <span class="rc-old">$290</span>
+          <span class="rc-new">$320 ↑</span>
+          <span class="rc-tag stale">Cost +12%</span>
+        </div>
+        <div class="rc-row">
+          <span class="rc-name">X-Ray — 2 Views</span>
+          <span class="rc-old">$85</span>
+          <span class="rc-new">$98 ↑</span>
+          <span class="rc-tag stale">Stale 548d</span>
+        </div>
+      </div>
+      <div class="rc-footer">
+        <div class="rc-stat"><div class="rc-stat-num">14</div><div class="rc-stat-label">Flagged</div></div>
+        <div class="rc-stat"><div class="rc-stat-num green">+$680</div><div class="rc-stat-label">Est. monthly</div></div>
+        <div class="rc-stat"><div class="rc-stat-num">1,386</div><div class="rc-stat-label">Monitored</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SOCIAL PROOF -->
-<section class="social">
-  <div class="social-inner">
-    <div class="social-label fade-up">
-      <div class="section-label">What clinics are saying</div>
-      <h2 class="section-title" style="font-size:1.8rem">Built on real feedback from real practices.</h2>
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="testimonials-inner">
+    <div class="section-head fade-up">
+      <div class="section-tag">What clinics are saying</div>
+      <h2 class="section-title">Built on real feedback.</h2>
     </div>
     <div class="quote-grid stagger">
-      <div class="quote-card">
+      <div class="qcard">
         <div class="stars">★★★★★</div>
-        <p class="quote-text">"We hadn't touched half our codes in two years. Vet INC found 40 items that needed updating in the first week. Approved them in an afternoon."</p>
-        <div class="quote-author">
-          <div class="author-avatar">DM</div>
-          <div>
-            <div class="author-name">Dr. Melissa R.</div>
-            <div class="author-role">Practice Owner, BC</div>
-          </div>
-        </div>
+        <p class="qtext">"We hadn't touched half our codes in two years. Vet INC found 40 items that needed updating in the first week. Approved them in an afternoon."</p>
+        <div class="qauthor"><div class="qavatar">DM</div><div><div class="qname">Dr. Melissa R.</div><div class="qrole">Practice Owner, BC</div></div></div>
       </div>
-      <div class="quote-card">
+      <div class="qcard">
         <div class="stars">★★★★★</div>
-        <p class="quote-text">"The pricing review used to be a whole Saturday project. Now it's a ten-minute weekly thing. I don't think about it anymore."</p>
-        <div class="quote-author">
-          <div class="author-avatar">TK</div>
-          <div>
-            <div class="author-name">Tom K.</div>
-            <div class="author-role">Office Manager, Alberta</div>
-          </div>
-        </div>
+        <p class="qtext">"The pricing review used to be a whole Saturday project. Now it's a ten-minute weekly thing. I don't think about it anymore."</p>
+        <div class="qauthor"><div class="qavatar">TK</div><div><div class="qname">Tom K.</div><div class="qrole">Office Manager, Alberta</div></div></div>
       </div>
-      <div class="quote-card">
+      <div class="qcard">
         <div class="stars">★★★★★</div>
-        <p class="quote-text">"Finally a tool that doesn't try to replace our judgment — it just does the tedious part. The monitoring, the flagging. We still make every decision."</p>
-        <div class="quote-author">
-          <div class="author-avatar">SA</div>
-          <div>
-            <div class="author-name">Dr. Sandra A.</div>
-            <div class="author-role">Clinic Director, Ontario</div>
-          </div>
-        </div>
+        <p class="qtext">"Finally a tool that doesn't try to replace our judgment — it just does the tedious part. We still make every decision."</p>
+        <div class="qauthor"><div class="qavatar">SA</div><div><div class="qname">Dr. Sandra A.</div><div class="qrole">Clinic Director, Ontario</div></div></div>
       </div>
     </div>
   </div>
@@ -840,24 +774,22 @@ footer{
 <section class="cta-section">
   <div class="cta-glow"></div>
   <div class="cta-inner fade-up">
-    <div class="section-label">Get started</div>
+    <div class="section-tag" style="color:rgba(255,255,255,.4)">Get started</div>
     <h2>Your price list,<br/>finally current.</h2>
-    <p>Connect your clinic in under five minutes. No contract, no setup fee. Cancel anytime.</p>
+    <p>Connect your clinic in under five minutes. No contract, no setup fee.</p>
     <div class="cta-form">
       <input class="cta-input" type="email" placeholder="your@clinic.com"/>
       <a href="https://vetinc.ca/setup.html" class="btn btn-primary">Start free →</a>
     </div>
-    <p class="cta-note">No credit card required &nbsp;·&nbsp; Works with all major PMS software &nbsp;·&nbsp; Canadian clinics only</p>
+    <p class="cta-note">No credit card required &nbsp;·&nbsp; Canadian clinics only &nbsp;·&nbsp; Works with all major PMS software</p>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-left">
-    <div class="logo-icon" style="width:28px;height:28px;border-radius:7px">
-      <svg viewBox="0 0 24 24" style="width:14px;height:14px;fill:white"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-    </div>
-    <span class="footer-text">© 2026 Vet INC. All rights reserved.</span>
+  <div class="footer-logo">
+    <div class="footer-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+    <span class="footer-copy">&nbsp; © 2026 Vet INC. All rights reserved.</span>
   </div>
   <div class="footer-links">
     <a href="#">Privacy</a>
@@ -868,56 +800,29 @@ footer{
 </footer>
 
 <script>
-// Nav scroll effect
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 40);
-});
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 30));
 
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      observer.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12 });
+const io = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)} }), {threshold:.1});
+document.querySelectorAll('.fade-up,.fade-in,.stagger').forEach(el => io.observe(el));
 
-document.querySelectorAll('.fade-up, .fade-in, .stagger').forEach(el => observer.observe(el));
-
-// Counter animation
-function animateCount(el, target, duration = 1500) {
+function animateCount(el, target, dur=1400) {
   const start = performance.now();
-  const step = (now) => {
-    const p = Math.min((now - start) / duration, 1);
-    const ease = p < 0.5 ? 2 * p * p : -1 + (4 - 2 * p) * p;
-    el.textContent = Math.floor(ease * target);
-    if (p < 1) requestAnimationFrame(step);
-    else el.textContent = target;
+  const run = now => {
+    const p = Math.min((now-start)/dur,1);
+    const ease = p<.5?2*p*p:-1+(4-2*p)*p;
+    el.textContent = Math.floor(ease*target);
+    if(p<1) requestAnimationFrame(run); else el.textContent=target;
   };
-  requestAnimationFrame(step);
+  requestAnimationFrame(run);
 }
+const cio = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting){ x.target.querySelectorAll('.count[data-target]').forEach(el=>animateCount(el,+el.dataset.target)); cio.unobserve(x.target)} }), {threshold:.5});
+document.querySelectorAll('.stats-bar').forEach(el=>cio.observe(el));
 
-const statObserver = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.querySelectorAll('.count[data-target]').forEach(el => {
-        animateCount(el, parseInt(el.dataset.target));
-      });
-      statObserver.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.5 });
-document.querySelectorAll('.hero-stats').forEach(el => statObserver.observe(el));
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-  });
-});
+document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+  const t = document.querySelector(a.getAttribute('href'));
+  if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+}));
 </script>
 </body>
 </html>
