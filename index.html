@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<meta name="color-scheme" content="light dark"/>
-<title>Vet INC — Automated Price Upkeep for Veterinary Clinics</title>
-<meta name="description" content="Vet INC keeps your service prices current on a schedule — automatically, without manual work."/>
+<meta name="color-scheme" content="light"/>
+<title>Vet INC — Fee Schedule Upkeep for Veterinary Clinics</title>
+<meta name="description" content="Vet INC keeps your veterinary fee schedule current — automatically, on a schedule you set."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
@@ -13,480 +13,349 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --navy:   #0b1120;
-  --navy2:  #0f172a;
-  --navy3:  #1e293b;
-  --navy4:  #334155;
-  --blue:   #3b82f6;
-  --blue2:  #2563eb;
-  --blue3:  #1d4ed8;
-  --blue-g: #60a5fa;
-  --slate:  #64748b;
-  --mid:    #94a3b8;
+  --ink:    #0b1120;
+  --ink2:   #1e293b;
+  --ink3:   #334155;
+  --muted:  #64748b;
+  --light:  #94a3b8;
   --border: #e2e8f0;
-  --surface:#f8fafc;
+  --bg:     #f8fafc;
   --white:  #ffffff;
-  --green:  #22c55e;
-  --red:    #ef4444;
-  --amber:  #f59e0b;
-  --amber2: #d97706;
+  --blue:   #2563eb;
+  --blue2:  #1d4ed8;
+  --glow:   #3b82f6;
+  --green:  #16a34a;
+  --red:    #dc2626;
+  --amber:  #d97706;
 }
 
 html { scroll-behavior: smooth; }
-body { font-family: 'Inter', system-ui, sans-serif; background: var(--white); color: var(--navy2); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+body { font-family: 'Inter', system-ui, sans-serif; background: var(--white); color: var(--ink); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
-/* ── NAV ── */
+/* NAV */
 nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  height: 58px; padding: 0 48px;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 99;
+  height: 56px; padding: 0 40px;
   display: flex; align-items: center; justify-content: space-between;
-  background: rgba(11,17,32,.92);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255,255,255,.06);
+  background: rgba(11,17,32,.9); backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,.05);
 }
-.n-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.n-mark {
-  width: 30px; height: 30px; border-radius: 7px;
-  background: linear-gradient(135deg, var(--blue2), var(--blue3));
-  display: flex; align-items: center; justify-content: center;
-}
-.n-mark svg { width: 14px; height: 14px; stroke: #fff; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-.n-name { font-size: .9rem; font-weight: 800; color: #fff; letter-spacing: -.2px; }
-.n-links { display: flex; align-items: center; gap: 2px; }
-.n-links a { font-size: .78rem; font-weight: 500; color: rgba(255,255,255,.45); text-decoration: none; padding: 6px 12px; border-radius: 6px; transition: color .15s; }
-.n-links a:hover { color: rgba(255,255,255,.85); }
-.n-cta {
-  background: var(--blue2) !important; color: #fff !important;
-  font-weight: 600 !important; border-radius: 6px !important;
-  padding: 7px 16px !important; transition: background .15s !important;
-}
-.n-cta:hover { background: var(--blue3) !important; }
+.logo { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+.logo-mark { width: 28px; height: 28px; background: var(--blue); border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+.logo-mark svg { width: 13px; height: 13px; stroke: #fff; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.logo-name { font-size: .88rem; font-weight: 800; color: #fff; letter-spacing: -.2px; }
+.nav-right { display: flex; align-items: center; gap: 6px; }
+.nav-link { font-size: .76rem; font-weight: 500; color: rgba(255,255,255,.4); text-decoration: none; padding: 5px 10px; border-radius: 5px; transition: color .15s; }
+.nav-link:hover { color: rgba(255,255,255,.8); }
+.nav-btn { font-size: .76rem; font-weight: 700; color: #fff; background: var(--blue); text-decoration: none; padding: 6px 14px; border-radius: 6px; transition: background .15s; }
+.nav-btn:hover { background: var(--blue2); }
+@media (max-width: 640px) { nav { padding: 0 20px; } .nav-link { display: none; } }
 
-@media (max-width: 700px) { nav { padding: 0 20px; } .n-links a:not(.n-cta) { display: none; } }
-
-/* ── HERO ── */
+/* HERO */
 .hero {
-  background: var(--navy);
-  padding: 130px 48px 88px;
-  position: relative;
-  overflow: hidden;
+  min-height: 100vh;
+  background: var(--ink);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 100px 24px 72px;
+  position: relative; overflow: hidden; text-align: center;
 }
 .hero::before {
   content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 70% 60% at 65% 40%, rgba(37,99,235,.18) 0%, transparent 70%);
+  position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 600px;
+  background: radial-gradient(ellipse, rgba(37,99,235,.2) 0%, transparent 70%);
   pointer-events: none;
 }
-.hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 400px; gap: 64px; align-items: center; position: relative; }
-@media (max-width: 900px) { .hero-inner { grid-template-columns: 1fr; } .hero { padding: 100px 24px 64px; } }
-
-.hero-tag {
-  display: inline-block;
-  font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-  color: var(--blue-g); margin-bottom: 22px;
+.hero-eyebrow {
+  font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--glow); margin-bottom: 24px; display: block;
 }
 .hero-h1 {
-  font-size: clamp(2.6rem, 5.5vw, 4.2rem);
-  font-weight: 900; line-height: 1.04; letter-spacing: -2px;
-  color: #fff; margin-bottom: 22px;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 900; line-height: 1.02; letter-spacing: -2.5px;
+  color: #fff; margin-bottom: 20px; max-width: 800px;
 }
-.hero-h1 em { font-style: normal; color: var(--blue-g); }
-.hero-sub { font-size: 1rem; color: rgba(255,255,255,.5); line-height: 1.75; max-width: 420px; margin-bottom: 36px; }
-.hero-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 36px; }
-.btn { display: inline-flex; align-items: center; gap: 6px; padding: 11px 22px; border-radius: 8px; font-size: .83rem; font-weight: 700; text-decoration: none; font-family: inherit; cursor: pointer; border: none; transition: all .15s; }
-.btn-blue { background: var(--blue2); color: #fff; }
-.btn-blue:hover { background: var(--blue3); transform: translateY(-1px); }
-.btn-ghost-w { background: rgba(255,255,255,.06); color: rgba(255,255,255,.75); border: 1px solid rgba(255,255,255,.1); }
-.btn-ghost-w:hover { background: rgba(255,255,255,.1); }
-.hero-fine { display: flex; gap: 20px; flex-wrap: wrap; }
-.hero-fine span { font-size: .68rem; color: rgba(255,255,255,.25); }
+.hero-h1 em { font-style: normal; color: var(--glow); }
+.hero-sub {
+  font-size: clamp(.9rem, 2vw, 1.05rem);
+  color: rgba(255,255,255,.42); line-height: 1.75;
+  max-width: 460px; margin: 0 auto 36px;
+}
+.hero-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 64px; }
+.btn { display: inline-flex; align-items: center; padding: 11px 24px; border-radius: 8px; font-size: .84rem; font-weight: 700; text-decoration: none; font-family: inherit; cursor: pointer; border: none; transition: all .16s; }
+.btn-blue { background: var(--blue); color: #fff; }
+.btn-blue:hover { background: var(--blue2); transform: translateY(-1px); }
+.btn-ghost { background: rgba(255,255,255,.06); color: rgba(255,255,255,.65); border: 1px solid rgba(255,255,255,.1); }
+.btn-ghost:hover { background: rgba(255,255,255,.1); }
 
-/* ── HERO CARD ── */
-.h-card {
+/* HERO CARD */
+.hero-card-wrap {
+  width: 100%; max-width: 500px;
+  position: relative;
+}
+.hero-card-wrap::before {
+  content: '';
+  position: absolute; inset: -1px;
+  background: linear-gradient(135deg, rgba(59,130,246,.3), rgba(37,99,235,.1), transparent);
+  border-radius: 13px; z-index: 0;
+}
+.hcard {
+  position: relative; z-index: 1;
   background: #111827;
   border: 1px solid rgba(255,255,255,.08);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 32px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.04) inset;
+  border-radius: 12px; overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.03) inset;
 }
-.hc-top {
-  padding: 12px 16px;
-  background: rgba(255,255,255,.03);
+.hc-bar {
+  padding: 11px 16px;
+  background: rgba(255,255,255,.025);
   border-bottom: 1px solid rgba(255,255,255,.06);
   display: flex; align-items: center; justify-content: space-between;
 }
-.hc-top-title { font-size: .72rem; font-weight: 700; color: rgba(255,255,255,.55); }
-.hc-badge { font-size: .6rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; background: rgba(245,158,11,.12); color: var(--amber); border: 1px solid rgba(245,158,11,.2); }
-
+.hc-bar-label { font-size: .69rem; font-weight: 600; color: rgba(255,255,255,.4); }
+.hc-badge { font-size: .58rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; background: rgba(214,119,6,.12); color: #fbbf24; border: 1px solid rgba(214,119,6,.2); }
 .hc-row {
-  display: grid; grid-template-columns: 6px 1fr auto auto auto; gap: 10px; align-items: center;
+  display: grid; grid-template-columns: 7px 1fr auto auto auto; gap: 10px; align-items: center;
   padding: 9px 16px; border-bottom: 1px solid rgba(255,255,255,.04);
 }
 .hc-row:last-of-type { border: none; }
 .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-.dr { background: var(--red); }
-.da { background: var(--amber); }
-.dg { background: var(--green); }
-.hc-name { font-size: .71rem; color: rgba(255,255,255,.7); font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.hc-was { font-size: .68rem; color: rgba(255,255,255,.2); text-decoration: line-through; }
-.hc-now { font-size: .71rem; font-weight: 700; color: var(--green); }
-.hc-now.flat { color: rgba(255,255,255,.2); font-weight: 500; }
-.hc-tag { font-size: .58rem; font-weight: 600; padding: 2px 7px; border-radius: 3px; white-space: nowrap; }
-.ht-s { background: rgba(245,158,11,.1); color: var(--amber); border: 1px solid rgba(245,158,11,.2); }
-.ht-b { background: rgba(239,68,68,.1); color: var(--red); border: 1px solid rgba(239,68,68,.15); }
-.ht-g { background: rgba(34,197,94,.1); color: var(--green); border: 1px solid rgba(34,197,94,.15); }
-
+.dot-r { background: var(--red); }
+.dot-a { background: #f59e0b; }
+.dot-g { background: var(--green); }
+.hc-name { font-size: .7rem; color: rgba(255,255,255,.65); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hc-old { font-size: .67rem; color: rgba(255,255,255,.18); text-decoration: line-through; }
+.hc-new { font-size: .7rem; font-weight: 700; color: #4ade80; }
+.hc-new.same { color: rgba(255,255,255,.18); font-weight: 400; }
+.hc-pill { font-size: .56rem; font-weight: 700; padding: 2px 7px; border-radius: 3px; white-space: nowrap; }
+.pill-a { background: rgba(245,158,11,.1); color: #fbbf24; border: 1px solid rgba(245,158,11,.18); }
+.pill-r { background: rgba(220,38,38,.1); color: #f87171; border: 1px solid rgba(220,38,38,.15); }
+.pill-g { background: rgba(22,163,74,.1); color: #4ade80; border: 1px solid rgba(22,163,74,.15); }
 .hc-foot {
   display: grid; grid-template-columns: repeat(3,1fr);
-  border-top: 1px solid rgba(255,255,255,.06);
-  background: rgba(255,255,255,.02);
+  border-top: 1px solid rgba(255,255,255,.05);
+  background: rgba(255,255,255,.015);
 }
-.hcf-cell { padding: 12px 10px; text-align: center; }
-.hcf-num { font-size: .95rem; font-weight: 900; color: #fff; letter-spacing: -.5px; }
-.hcf-num.g { color: var(--green); }
-.hcf-lbl { font-size: .56rem; color: rgba(255,255,255,.22); text-transform: uppercase; letter-spacing: .05em; margin-top: 2px; }
+.hcf { padding: 11px; text-align: center; }
+.hcf-n { font-size: .88rem; font-weight: 900; color: #fff; letter-spacing: -.5px; }
+.hcf-n.g { color: #4ade80; }
+.hcf-l { font-size: .53rem; color: rgba(255,255,255,.2); text-transform: uppercase; letter-spacing: .06em; margin-top: 2px; }
 
-/* ── TICKER ── */
-.ticker-wrap { overflow: hidden; padding: 11px 0; background: var(--navy3); border-bottom: 1px solid rgba(255,255,255,.06); white-space: nowrap; }
-.ticker { display: inline-flex; animation: tick 46s linear infinite; }
-@keyframes tick { to { transform: translateX(-50%); } }
-.t-item { display: inline-flex; align-items: center; gap: 8px; padding: 0 28px; font-size: .69rem; color: rgba(255,255,255,.35); }
-.t-name { color: rgba(255,255,255,.6); font-weight: 600; }
-.t-flag { font-size: .58rem; font-weight: 700; padding: 1px 7px; border-radius: 3px; }
-.tf-s { background: rgba(245,158,11,.12); color: var(--amber); }
-.tf-u { background: rgba(239,68,68,.1); color: var(--red); }
-.tf-c { background: rgba(34,197,94,.1); color: var(--green); }
-
-/* ── STATS ── */
-.stats { display: grid; grid-template-columns: repeat(3,1fr); background: var(--white); border-bottom: 1px solid var(--border); }
-@media (max-width: 600px) { .stats { grid-template-columns: 1fr; } }
-.st-cell { padding: 40px 48px; border-right: 1px solid var(--border); }
-.st-cell:last-child { border: none; }
-@media (max-width: 600px) { .st-cell { border-right: none; border-bottom: 1px solid var(--border); padding: 28px 24px; } .st-cell:last-child { border: none; } }
-.st-num { font-size: 2.4rem; font-weight: 900; color: var(--navy2); letter-spacing: -1.5px; line-height: 1; }
-.st-lbl { font-size: .72rem; color: var(--slate); margin-top: 8px; line-height: 1.5; }
-
-/* ── CONTENT SECTIONS ── */
-.sec { padding: 96px 48px; }
-.sec.alt { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-@media (max-width: 700px) { .sec { padding: 72px 24px; } }
-.inner { max-width: 1064px; margin: 0 auto; }
-.eyebrow { font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--slate); display: block; margin-bottom: 10px; }
-.sh { font-size: clamp(1.7rem, 3.5vw, 2.4rem); font-weight: 900; letter-spacing: -1px; line-height: 1.1; color: var(--navy2); margin-bottom: 12px; }
-.sp { font-size: .9rem; color: var(--slate); line-height: 1.75; max-width: 480px; }
-
-/* ── HOW ── */
-.how-grid { display: grid; grid-template-columns: repeat(3,1fr); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 48px; }
-@media (max-width: 720px) { .how-grid { grid-template-columns: 1fr; } }
-.hw { padding: 32px 26px; background: var(--white); border-right: 1px solid var(--border); }
-.hw:last-child { border: none; }
-@media (max-width: 720px) { .hw { border-right: none; border-bottom: 1px solid var(--border); } .hw:last-child { border: none; } }
-.hw-step { font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--mid); display: block; margin-bottom: 12px; }
-.hw-title { font-size: .92rem; font-weight: 800; color: var(--navy2); margin-bottom: 8px; }
-.hw-desc { font-size: .79rem; color: var(--slate); line-height: 1.65; }
-
-/* ── PLANS ── */
-.plans-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 48px; }
-@media (max-width: 800px) { .plans-grid { grid-template-columns: 1fr; } }
-.pl { border: 1px solid var(--border); border-radius: 10px; padding: 26px; background: var(--white); transition: box-shadow .2s, border-color .2s; position: relative; }
-.pl:hover { border-color: #93c5fd; box-shadow: 0 8px 28px rgba(37,99,235,.07); }
-.pl-mode { font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--slate); display: block; margin-bottom: 10px; }
-.pl-title { font-size: 1.05rem; font-weight: 800; color: var(--navy2); margin-bottom: 8px; }
-.pl-desc { font-size: .79rem; color: var(--slate); line-height: 1.65; margin-bottom: 18px; }
-.pl-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
-.pl-list li { font-size: .77rem; color: var(--navy3); padding-left: 14px; position: relative; line-height: 1.45; }
-.pl-list li::before { content: '–'; position: absolute; left: 0; color: var(--mid); }
-.pl-pop { position: absolute; top: 14px; right: 14px; font-size: .58rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--blue2); background: #eff6ff; border: 1px solid #bfdbfe; padding: 2px 8px; border-radius: 3px; }
-
-/* ── FACTS ── */
-.facts { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 48px; }
-@media (max-width: 700px) { .facts { grid-template-columns: repeat(2,1fr); } }
-.fc { background: var(--white); padding: 28px 22px; }
-.fc-num { font-size: 1.9rem; font-weight: 900; color: var(--navy2); letter-spacing: -1px; line-height: 1; margin-bottom: 8px; }
-.fc-desc { font-size: .74rem; color: var(--slate); line-height: 1.6; }
-
-/* ── FEATURE SPLIT ── */
-.split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-@media (max-width: 900px) { .split { grid-template-columns: 1fr; gap: 48px; } }
-.split-feats { list-style: none; margin-top: 32px; display: flex; flex-direction: column; gap: 22px; }
-.sf-title { font-size: .85rem; font-weight: 700; color: var(--navy2); margin-bottom: 4px; }
-.sf-desc { font-size: .78rem; color: var(--slate); line-height: 1.65; }
-
-/* ── DARK CARD (white section) ── */
-.card-dark {
-  background: var(--navy2);
-  border: 1px solid rgba(255,255,255,.07);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 24px 60px rgba(15,23,42,.22);
+/* STRIP */
+.strip {
+  background: var(--ink2); border-top: 1px solid rgba(255,255,255,.05); border-bottom: 1px solid rgba(255,255,255,.05);
+  padding: 14px 0; overflow: hidden; white-space: nowrap;
 }
-.cd-top {
-  padding: 12px 16px; background: rgba(255,255,255,.03);
-  border-bottom: 1px solid rgba(255,255,255,.06);
-  display: flex; align-items: center; justify-content: space-between;
-}
-.cd-title { font-size: .71rem; font-weight: 700; color: rgba(255,255,255,.4); }
-.cd-badge { font-size: .6rem; font-weight: 700; padding: 2px 8px; border-radius: 3px; background: rgba(245,158,11,.12); color: var(--amber); border: 1px solid rgba(245,158,11,.2); }
-.cd-row { display: grid; grid-template-columns: 6px 1fr auto auto auto; gap: 10px; align-items: center; padding: 9px 16px; border-bottom: 1px solid rgba(255,255,255,.04); }
-.cd-row:last-of-type { border: none; }
-.cd-name { font-size: .71rem; color: rgba(255,255,255,.65); font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.cd-was { font-size: .68rem; color: rgba(255,255,255,.2); text-decoration: line-through; }
-.cd-now { font-size: .71rem; font-weight: 700; color: var(--green); }
-.cd-now.flat { color: rgba(255,255,255,.2); font-weight: 400; }
-.cd-foot { display: grid; grid-template-columns: repeat(3,1fr); border-top: 1px solid rgba(255,255,255,.06); background: rgba(255,255,255,.02); }
-.cdf-cell { padding: 12px 10px; text-align: center; }
-.cdf-num { font-size: .95rem; font-weight: 900; color: #fff; letter-spacing: -.5px; }
-.cdf-num.g { color: var(--green); }
-.cdf-lbl { font-size: .56rem; color: rgba(255,255,255,.22); text-transform: uppercase; letter-spacing: .05em; margin-top: 2px; }
+.strip-inner { display: inline-flex; animation: slide 44s linear infinite; }
+@keyframes slide { to { transform: translateX(-50%); } }
+.strip-item { display: inline-flex; align-items: center; gap: 10px; padding: 0 32px; font-size: .68rem; color: rgba(255,255,255,.3); }
+.strip-name { color: rgba(255,255,255,.55); font-weight: 600; }
+.strip-tag { font-size: .56rem; font-weight: 700; padding: 1px 7px; border-radius: 3px; }
+.st-s { background: rgba(245,158,11,.1); color: #fbbf24; }
+.st-u { background: rgba(220,38,38,.1); color: #f87171; }
+.st-c { background: rgba(22,163,74,.1); color: #4ade80; }
 
-/* ── CTA ── */
-.cta-sec { padding: 96px 48px; background: var(--navy); }
-@media (max-width: 700px) { .cta-sec { padding: 72px 24px; } }
-.cta-inner { max-width: 520px; margin: 0 auto; text-align: center; }
-.cta-eyebrow { font-size: .63rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.22); display: block; margin-bottom: 16px; }
-.cta-h { font-size: clamp(1.9rem,4vw,2.9rem); font-weight: 900; color: #fff; letter-spacing: -1.5px; line-height: 1.06; margin-bottom: 14px; }
-.cta-h em { font-style: normal; color: var(--blue-g); }
-.cta-p { font-size: .88rem; color: rgba(255,255,255,.38); line-height: 1.7; margin-bottom: 28px; }
-.cta-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
-.cta-input { flex: 1; min-width: 180px; max-width: 230px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); color: #fff; font-family: inherit; font-size: .83rem; padding: 10px 14px; border-radius: 7px; outline: none; transition: border .2s; }
+/* WHAT */
+.what { padding: 100px 40px; background: var(--white); }
+.what-inner { max-width: 960px; margin: 0 auto; }
+.section-label { font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--light); display: block; margin-bottom: 12px; }
+.section-h { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; letter-spacing: -1.2px; line-height: 1.08; color: var(--ink); margin-bottom: 14px; }
+.section-p { font-size: .9rem; color: var(--muted); line-height: 1.78; max-width: 480px; }
+.what-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 52px; }
+@media (max-width: 720px) { .what-grid { grid-template-columns: 1fr; } }
+.wg-cell { padding: 32px 28px; background: var(--white); border-right: 1px solid var(--border); }
+.wg-cell:last-child { border: none; }
+@media (max-width: 720px) { .wg-cell { border-right: none; border-bottom: 1px solid var(--border); } .wg-cell:last-child { border: none; } }
+.wg-n { font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--light); display: block; margin-bottom: 12px; }
+.wg-title { font-size: .95rem; font-weight: 800; color: var(--ink); margin-bottom: 8px; }
+.wg-desc { font-size: .79rem; color: var(--muted); line-height: 1.65; }
+
+/* HOW */
+.how { padding: 100px 40px; background: var(--bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.how-inner { max-width: 960px; margin: 0 auto; }
+.how-steps { display: flex; flex-direction: column; gap: 0; margin-top: 52px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.step { display: grid; grid-template-columns: 56px 1fr; align-items: start; background: var(--white); border-bottom: 1px solid var(--border); }
+.step:last-child { border: none; }
+.step-n { padding: 28px 0 28px 28px; font-size: 1.3rem; font-weight: 900; color: var(--border); letter-spacing: -1px; }
+.step-body { padding: 28px 28px 28px 0; }
+.step-title { font-size: .92rem; font-weight: 800; color: var(--ink); margin-bottom: 6px; }
+.step-desc { font-size: .79rem; color: var(--muted); line-height: 1.65; }
+
+/* CTA */
+.cta { padding: 100px 40px; background: var(--ink); text-align: center; }
+.cta-inner { max-width: 480px; margin: 0 auto; }
+.cta-label { font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.2); display: block; margin-bottom: 16px; }
+.cta-h { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; color: #fff; letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 14px; }
+.cta-h em { font-style: normal; color: var(--glow); }
+.cta-p { font-size: .88rem; color: rgba(255,255,255,.32); line-height: 1.7; margin-bottom: 28px; }
+.cta-form { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.cta-input { flex: 1; min-width: 180px; max-width: 220px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); color: #fff; font-family: inherit; font-size: .82rem; padding: 10px 14px; border-radius: 7px; outline: none; transition: border .2s; }
 .cta-input::placeholder { color: rgba(255,255,255,.2); }
-.cta-input:focus { border-color: rgba(96,165,250,.5); }
-.btn-cta { background: var(--blue2); color: #fff; font-weight: 700; }
-.btn-cta:hover { background: var(--blue3); }
-.cta-fine { font-size: .65rem; color: rgba(255,255,255,.15); margin-top: 14px; }
+.cta-input:focus { border-color: rgba(96,165,250,.4); }
+.btn-white { background: #fff; color: var(--ink); font-weight: 700; }
+.btn-white:hover { background: rgba(255,255,255,.92); }
+.cta-fine { font-size: .63rem; color: rgba(255,255,255,.15); margin-top: 14px; }
 
-/* ── FOOTER ── */
-footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.05); padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
-@media (max-width: 700px) { footer { padding: 24px; flex-direction: column; text-align: center; } }
-.f-left { display: flex; align-items: center; gap: 10px; }
-.f-mark { width: 24px; height: 24px; background: rgba(255,255,255,.06); border-radius: 5px; display: flex; align-items: center; justify-content: center; }
-.f-mark svg { width: 11px; height: 11px; stroke: rgba(255,255,255,.3); fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-.f-copy { font-size: .67rem; color: rgba(255,255,255,.18); }
-.f-links { display: flex; gap: 18px; }
-.f-links a { font-size: .67rem; color: rgba(255,255,255,.18); text-decoration: none; transition: color .15s; }
+/* FOOTER */
+footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,.05); padding: 22px 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+@media (max-width: 640px) { footer { flex-direction: column; padding: 22px; text-align: center; } }
+.f-logo { display: flex; align-items: center; gap: 8px; }
+.f-mark { width: 22px; height: 22px; background: rgba(255,255,255,.06); border-radius: 5px; display: flex; align-items: center; justify-content: center; }
+.f-mark svg { width: 10px; height: 10px; stroke: rgba(255,255,255,.3); fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.f-copy { font-size: .65rem; color: rgba(255,255,255,.17); }
+.f-links { display: flex; gap: 16px; }
+.f-links a { font-size: .65rem; color: rgba(255,255,255,.17); text-decoration: none; transition: color .15s; }
 .f-links a:hover { color: rgba(255,255,255,.5); }
 
-/* ── ANIMATIONS ── */
-.reveal { opacity: 0; transform: translateY(14px); transition: opacity .55s ease, transform .55s ease; }
-.reveal.in { opacity: 1; transform: none; }
-.reveal-fade { opacity: 0; transition: opacity .65s ease; }
-.reveal-fade.in { opacity: 1; }
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity .55s ease, transform .55s ease; }
+.reveal.on { opacity: 1; transform: none; }
+.reveal-u { opacity: 0; transition: opacity .65s ease; }
+.reveal-u.on { opacity: 1; }
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="n-logo" href="#">
-    <div class="n-mark"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-    <span class="n-name">Vet INC</span>
+  <a class="logo" href="#">
+    <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+    <span class="logo-name">Vet INC</span>
   </a>
-  <div class="n-links">
-    <a href="#how">How it works</a>
-    <a href="#plans">Plans</a>
-    <a href="https://vetinc.ca/setup.html" class="n-cta">Get started</a>
+  <div class="nav-right">
+    <a href="#how" class="nav-link">How it works</a>
+    <a href="https://vetinc.ca/setup.html" class="nav-btn">Get started</a>
   </div>
 </nav>
 
-<!-- HERO (dark) -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-inner">
-    <div class="reveal">
-      <span class="hero-tag">Automated pricing upkeep</span>
-      <h1 class="hero-h1">Prices that <em>never</em><br>fall behind.</h1>
-      <p class="hero-sub">Vet INC reviews your full service list on a set schedule — flagging what's drifted, preparing updates, and keeping your pricing current without any manual work.</p>
-      <div class="hero-btns">
-        <a href="https://vetinc.ca/setup.html" class="btn btn-blue">Get started free</a>
-        <a href="#how" class="btn btn-ghost-w">See how it works</a>
+  <span class="hero-eyebrow reveal">Automated fee schedule upkeep</span>
+  <h1 class="hero-h1 reveal">Your fee schedule,<br><em>always current.</em></h1>
+  <p class="hero-sub reveal">Vet INC reviews every service code on a schedule you set — flagging what's drifted and keeping your pricing up to date, without the manual work.</p>
+  <div class="hero-actions reveal">
+    <a href="https://vetinc.ca/setup.html" class="btn btn-blue">Get started free</a>
+    <a href="#how" class="btn btn-ghost">How it works</a>
+  </div>
+  <div class="hero-card-wrap reveal-u">
+    <div class="hcard">
+      <div class="hc-bar">
+        <span class="hc-bar-label">Scheduled Review — June 2026</span>
+        <span class="hc-badge">14 flagged</span>
       </div>
-      <div class="hero-fine">
-        <span>No setup fee</span>
-        <span>AVImark &amp; Cornerstone</span>
-        <span>Cancel anytime</span>
-      </div>
-    </div>
-    <div class="reveal-fade">
-      <div class="h-card">
-        <div class="hc-top">
-          <span class="hc-top-title">Scheduled Review — June 2026</span>
-          <span class="hc-badge">14 flagged</span>
-        </div>
-        <div class="hc-row"><span class="dot dr"></span><span class="hc-name">Annual Wellness Exam</span><span class="hc-was">$68</span><span class="hc-now">$79</span><span class="hc-tag ht-s">847d stale</span></div>
-        <div class="hc-row"><span class="dot dr"></span><span class="hc-name">Dental Cleaning — Cat</span><span class="hc-was">$210</span><span class="hc-now">$235</span><span class="hc-tag ht-b">−$15 avg</span></div>
-        <div class="hc-row"><span class="dot dg"></span><span class="hc-name">CBC Panel</span><span class="hc-was">$55</span><span class="hc-now flat">$55</span><span class="hc-tag ht-g">Current</span></div>
-        <div class="hc-row"><span class="dot dr"></span><span class="hc-name">Spay — Small Dog</span><span class="hc-was">$290</span><span class="hc-now">$320</span><span class="hc-tag ht-s">Cost +12%</span></div>
-        <div class="hc-row"><span class="dot da"></span><span class="hc-name">X-Ray (2 views)</span><span class="hc-was">$85</span><span class="hc-now">$98</span><span class="hc-tag ht-s">548d stale</span></div>
-        <div class="hc-foot">
-          <div class="hcf-cell"><div class="hcf-num">14</div><div class="hcf-lbl">Flagged</div></div>
-          <div class="hcf-cell"><div class="hcf-num g">+$680</div><div class="hcf-lbl">Est. monthly</div></div>
-          <div class="hcf-cell"><div class="hcf-num">1,386</div><div class="hcf-lbl">Monitored</div></div>
-        </div>
+      <div class="hc-row"><span class="dot dot-r"></span><span class="hc-name">Annual Wellness Exam</span><span class="hc-old">$68</span><span class="hc-new">$79</span><span class="hc-pill pill-a">847d stale</span></div>
+      <div class="hc-row"><span class="dot dot-r"></span><span class="hc-name">Dental Cleaning — Cat</span><span class="hc-old">$210</span><span class="hc-new">$235</span><span class="hc-pill pill-r">−$15 avg</span></div>
+      <div class="hc-row"><span class="dot dot-g"></span><span class="hc-name">CBC Panel</span><span class="hc-old">$55</span><span class="hc-new same">$55</span><span class="hc-pill pill-g">Current</span></div>
+      <div class="hc-row"><span class="dot dot-r"></span><span class="hc-name">Spay — Small Dog</span><span class="hc-old">$290</span><span class="hc-new">$320</span><span class="hc-pill pill-a">Cost +12%</span></div>
+      <div class="hc-row"><span class="dot dot-a"></span><span class="hc-name">X-Ray (2 views)</span><span class="hc-old">$85</span><span class="hc-new">$98</span><span class="hc-pill pill-a">548d stale</span></div>
+      <div class="hc-foot">
+        <div class="hcf"><div class="hcf-n">14</div><div class="hcf-l">Flagged</div></div>
+        <div class="hcf"><div class="hcf-n g">+$680</div><div class="hcf-l">Est. monthly</div></div>
+        <div class="hcf"><div class="hcf-n">1,386</div><div class="hcf-l">Codes monitored</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TICKER -->
-<div class="ticker-wrap">
-  <div class="ticker">
-    <div class="t-item"><span class="t-name">Annual Wellness Exam</span>/ 847 days since last update <span class="t-flag tf-s">Stale</span></div>
-    <div class="t-item"><span class="t-name">Dental Cleaning — Cat</span>/ $15 below regional avg <span class="t-flag tf-u">Under</span></div>
-    <div class="t-item"><span class="t-name">CBC Panel</span>/ reviewed last month <span class="t-flag tf-c">Current</span></div>
-    <div class="t-item"><span class="t-name">Spay / Neuter</span>/ cost up, price unchanged <span class="t-flag tf-s">Review</span></div>
-    <div class="t-item"><span class="t-name">X-Ray (2 views)</span>/ 18 months untouched <span class="t-flag tf-s">Stale</span></div>
-    <div class="t-item"><span class="t-name">Rabies Vaccine</span>/ 6% under market <span class="t-flag tf-u">Under</span></div>
-    <div class="t-item"><span class="t-name">IV Fluid Therapy</span>/ cost up 18%, price unchanged <span class="t-flag tf-s">Review</span></div>
-    <div class="t-item"><span class="t-name">Microchip Implant</span>/ current and accurate <span class="t-flag tf-c">Current</span></div>
-    <div class="t-item"><span class="t-name">Annual Wellness Exam</span>/ 847 days since last update <span class="t-flag tf-s">Stale</span></div>
-    <div class="t-item"><span class="t-name">Dental Cleaning — Cat</span>/ $15 below regional avg <span class="t-flag tf-u">Under</span></div>
-    <div class="t-item"><span class="t-name">CBC Panel</span>/ reviewed last month <span class="t-flag tf-c">Current</span></div>
-    <div class="t-item"><span class="t-name">Spay / Neuter</span>/ cost up, price unchanged <span class="t-flag tf-s">Review</span></div>
-    <div class="t-item"><span class="t-name">X-Ray (2 views)</span>/ 18 months untouched <span class="t-flag tf-s">Stale</span></div>
-    <div class="t-item"><span class="t-name">Rabies Vaccine</span>/ 6% under market <span class="t-flag tf-u">Under</span></div>
-    <div class="t-item"><span class="t-name">IV Fluid Therapy</span>/ cost up 18%, price unchanged <span class="t-flag tf-s">Review</span></div>
-    <div class="t-item"><span class="t-name">Microchip Implant</span>/ current and accurate <span class="t-flag tf-c">Current</span></div>
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <div class="strip-item"><span class="strip-name">Annual Wellness Exam</span>/ 847 days since last update <span class="strip-tag st-s">Stale</span></div>
+    <div class="strip-item"><span class="strip-name">Dental Cleaning — Cat</span>/ $15 below market avg <span class="strip-tag st-u">Under</span></div>
+    <div class="strip-item"><span class="strip-name">CBC Panel</span>/ reviewed this month <span class="strip-tag st-c">Current</span></div>
+    <div class="strip-item"><span class="strip-name">Spay / Neuter</span>/ cost up, price unchanged <span class="strip-tag st-s">Review</span></div>
+    <div class="strip-item"><span class="strip-name">X-Ray (2 views)</span>/ 18 months untouched <span class="strip-tag st-s">Stale</span></div>
+    <div class="strip-item"><span class="strip-name">Rabies Vaccine</span>/ 6% under market <span class="strip-tag st-u">Under</span></div>
+    <div class="strip-item"><span class="strip-name">IV Fluids</span>/ cost up 18%, price flat <span class="strip-tag st-s">Review</span></div>
+    <div class="strip-item"><span class="strip-name">Microchip</span>/ current and accurate <span class="strip-tag st-c">Current</span></div>
+    <div class="strip-item"><span class="strip-name">Annual Wellness Exam</span>/ 847 days since last update <span class="strip-tag st-s">Stale</span></div>
+    <div class="strip-item"><span class="strip-name">Dental Cleaning — Cat</span>/ $15 below market avg <span class="strip-tag st-u">Under</span></div>
+    <div class="strip-item"><span class="strip-name">CBC Panel</span>/ reviewed this month <span class="strip-tag st-c">Current</span></div>
+    <div class="strip-item"><span class="strip-name">Spay / Neuter</span>/ cost up, price unchanged <span class="strip-tag st-s">Review</span></div>
+    <div class="strip-item"><span class="strip-name">X-Ray (2 views)</span>/ 18 months untouched <span class="strip-tag st-s">Stale</span></div>
+    <div class="strip-item"><span class="strip-name">Rabies Vaccine</span>/ 6% under market <span class="strip-tag st-u">Under</span></div>
+    <div class="strip-item"><span class="strip-name">IV Fluids</span>/ cost up 18%, price flat <span class="strip-tag st-s">Review</span></div>
+    <div class="strip-item"><span class="strip-name">Microchip</span>/ current and accurate <span class="strip-tag st-c">Current</span></div>
   </div>
 </div>
 
-<!-- STATS -->
-<div class="stats">
-  <div class="st-cell"><div class="st-num"><span class="count" data-target="1400">0</span>+</div><div class="st-lbl">Service codes monitored per clinic</div></div>
-  <div class="st-cell"><div class="st-num">3–5%</div><div class="st-lbl">Annual revenue lost to unnoticed price drift</div></div>
-  <div class="st-cell"><div class="st-num">Zero</div><div class="st-lbl">Manual work required to stay current</div></div>
-</div>
-
-<!-- HOW IT WORKS -->
-<section class="sec" id="how">
-  <div class="inner">
+<!-- WHAT -->
+<section class="what" id="what">
+  <div class="what-inner">
     <div class="reveal">
-      <span class="eyebrow">How it works</span>
-      <h2 class="sh">Set your schedule. We handle the rest.</h2>
-      <p class="sp">Connect once. Vet INC runs on your cadence — weekly, monthly, or quarterly — and makes sure nothing gets missed.</p>
+      <span class="section-label">The problem</span>
+      <h2 class="section-h">500–2,000 codes.<br>No one's watching them.</h2>
+      <p class="section-p">Most clinics haven't touched the bulk of their fee schedule in years. Costs go up. Prices don't. The gap compounds quietly, year over year.</p>
     </div>
-    <div class="how-grid">
-      <div class="hw reveal"><span class="hw-step">Step 01</span><div class="hw-title">Connect your clinic</div><p class="hw-desc">Upload your service list from AVImark, Cornerstone, EzyVet, or any major PMS. Under five minutes. No IT required.</p></div>
-      <div class="hw reveal"><span class="hw-step">Step 02</span><div class="hw-title">Reviews run on schedule</div><p class="hw-desc">Every code is scanned on your chosen cadence. Vet INC flags what's drifted and lines up suggested updates with context.</p></div>
-      <div class="hw reveal"><span class="hw-step">Step 03</span><div class="hw-title">Approve and stay current</div><p class="hw-desc">Review the batch, approve what looks right, done. No spreadsheets, no consultants, no back-and-forth.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- PLANS -->
-<section class="sec alt" id="plans">
-  <div class="inner">
-    <div class="reveal">
-      <span class="eyebrow">Plans</span>
-      <h2 class="sh">As hands-on as you want to be.</h2>
-      <p class="sp">From full control to fully automated — you choose how much Vet INC handles on its own.</p>
-    </div>
-    <div class="plans-grid">
-      <div class="pl reveal">
-        <span class="pl-mode">Pilot</span>
-        <div class="pl-title">You review everything.</div>
-        <p class="pl-desc">Vet INC flags what's drifted and prepares suggestions. Every update needs your sign-off before anything changes.</p>
-        <ul class="pl-list">
-          <li>Full service list monitoring</li>
-          <li>Scheduled pricing reviews</li>
-          <li>Suggestions with full context</li>
-          <li>One-click approval</li>
-        </ul>
+    <div class="what-grid">
+      <div class="wg-cell reveal">
+        <span class="wg-n">Fact</span>
+        <div class="wg-title">847 days</div>
+        <p class="wg-desc">Average time since a clinic last reviewed its wellness exam price.</p>
       </div>
-      <div class="pl reveal">
-        <span class="pl-pop">Most popular</span>
-        <span class="pl-mode">Co-pilot</span>
-        <div class="pl-title">Weekly batch, you approve.</div>
-        <p class="pl-desc">Analysis and prioritization done automatically. You review a weekly summary and approve the batch in minutes.</p>
-        <ul class="pl-list">
-          <li>Everything in Pilot</li>
-          <li>Prioritized weekly batch</li>
-          <li>Approve, adjust, or skip</li>
-          <li>Full audit trail</li>
-        </ul>
+      <div class="wg-cell reveal">
+        <span class="wg-n">Fact</span>
+        <div class="wg-title">60% of codes</div>
+        <p class="wg-desc">Are priced below what the clinic's own costs justify.</p>
       </div>
-      <div class="pl reveal">
-        <span class="pl-mode">Autopilot</span>
-        <div class="pl-title">It runs itself.</div>
-        <p class="pl-desc">Within limits you set, Vet INC updates your price list automatically. Monthly summary of everything that changed.</p>
-        <ul class="pl-list">
-          <li>Everything in Co-pilot</li>
-          <li>Auto-apply within thresholds</li>
-          <li>Monthly change report</li>
-          <li>Override anytime</li>
-        </ul>
+      <div class="wg-cell reveal">
+        <span class="wg-n">Result</span>
+        <div class="wg-title">3–5% lost yearly</div>
+        <p class="wg-desc">Revenue quietly eroded by pricing that never kept up with costs.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FEATURE SPLIT -->
-<section class="sec">
-  <div class="inner">
-    <div class="split">
-      <div class="reveal">
-        <span class="eyebrow">Coverage</span>
-        <h2 class="sh">Every code. Every cycle.</h2>
-        <p class="sp">Built specifically for veterinary service lists — not adapted from generic software.</p>
-        <ul class="split-feats">
-          <li><div class="sf-title">500–2,000 codes, all included</div><p class="sf-desc">Every code in your list is part of every review. Nothing gets skipped because it seemed minor.</p></li>
-          <li><div class="sf-title">What triggers a flag</div><p class="sf-desc">Time since last update, changes in supply costs, and shifts in regional benchmarks. Only what actually needs attention.</p></li>
-          <li><div class="sf-title">Works with your PMS</div><p class="sf-desc">AVImark, Cornerstone, EzyVet, Impromed, and more. No custom integration required.</p></li>
-          <li><div class="sf-title">Nothing changes without you</div><p class="sf-desc">Unless you've set Autopilot thresholds, every update requires explicit approval from you.</p></li>
-        </ul>
+<!-- HOW -->
+<section class="how" id="how">
+  <div class="how-inner">
+    <div class="reveal">
+      <span class="section-label">How it works</span>
+      <h2 class="section-h">Connect once.<br>We handle the rest.</h2>
+      <p class="section-p">Vet INC runs on a schedule you set. Every review cycle, every code gets looked at. Nothing drifts unnoticed.</p>
+    </div>
+    <div class="how-steps">
+      <div class="step reveal">
+        <div class="step-n">01</div>
+        <div class="step-body">
+          <div class="step-title">Connect your clinic</div>
+          <p class="step-desc">Upload your fee schedule from AVImark, Cornerstone, EzyVet, or any major PMS. Under five minutes. No IT required.</p>
+        </div>
       </div>
-      <div class="reveal-fade">
-        <div class="card-dark">
-          <div class="cd-top">
-            <span class="cd-title">Weekly Batch — Co-pilot Mode</span>
-            <span class="cd-badge">14 flagged</span>
-          </div>
-          <div class="cd-row"><span class="dot dr"></span><span class="cd-name">Annual Wellness Exam (Dog)</span><span class="cd-was">$68</span><span class="cd-now">$79</span><span class="hc-tag ht-s">847d stale</span></div>
-          <div class="cd-row"><span class="dot dr"></span><span class="cd-name">Dental Cleaning — Cat</span><span class="cd-was">$210</span><span class="cd-now">$235</span><span class="hc-tag ht-b">−$15 avg</span></div>
-          <div class="cd-row"><span class="dot dg"></span><span class="cd-name">CBC Panel</span><span class="cd-was">$55</span><span class="cd-now flat">$55</span><span class="hc-tag ht-g">Current</span></div>
-          <div class="cd-row"><span class="dot dr"></span><span class="cd-name">Spay — Small Dog (&lt;10kg)</span><span class="cd-was">$290</span><span class="cd-now">$320</span><span class="hc-tag ht-s">Cost +12%</span></div>
-          <div class="cd-row"><span class="dot da"></span><span class="cd-name">X-Ray — 2 Views</span><span class="cd-was">$85</span><span class="cd-now">$98</span><span class="hc-tag ht-s">548d stale</span></div>
-          <div class="cd-foot">
-            <div class="cdf-cell"><div class="cdf-num">14</div><div class="cdf-lbl">Flagged</div></div>
-            <div class="cdf-cell"><div class="cdf-num g">+$680</div><div class="cdf-lbl">Est. monthly</div></div>
-            <div class="cdf-cell"><div class="cdf-num">1,386</div><div class="cdf-lbl">Monitored</div></div>
-          </div>
+      <div class="step reveal">
+        <div class="step-n">02</div>
+        <div class="step-body">
+          <div class="step-title">We review on your schedule</div>
+          <p class="step-desc">Weekly, monthly, or quarterly — Vet INC scans every code and flags what's fallen behind, with context on why.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-n">03</div>
+        <div class="step-body">
+          <div class="step-title">Approve and stay current</div>
+          <p class="step-desc">Review the batch, approve what looks right. Your fee schedule is updated. No spreadsheets, no guesswork, no back-and-forth.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FACTS -->
-<section class="sec alt">
-  <div class="inner">
-    <div class="reveal">
-      <span class="eyebrow">The problem</span>
-      <h2 class="sh">Pricing drift is silent. And expensive.</h2>
-      <p class="sp">It doesn't show up on any report. It shows up as margin that quietly disappears year over year.</p>
-    </div>
-    <div class="facts">
-      <div class="fc reveal"><div class="fc-num">847</div><p class="fc-desc">Average days since a clinic last reviewed its wellness exam price</p></div>
-      <div class="fc reveal"><div class="fc-num">60%</div><p class="fc-desc">Of service codes priced below what the clinic's own costs justify</p></div>
-      <div class="fc reveal"><div class="fc-num">3–5%</div><p class="fc-desc">Annual revenue lost on average — invisible until you actually measure it</p></div>
-      <div class="fc reveal"><div class="fc-num">0</div><p class="fc-desc">Blanket increases applied — every code is reviewed individually</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA (dark) -->
-<section class="cta-sec">
+<!-- CTA -->
+<section class="cta">
   <div class="cta-inner reveal">
-    <span class="cta-eyebrow">Get started</span>
-    <h2 class="cta-h">Prices that <em>never</em> fall behind.</h2>
-    <p class="cta-p">Connect your clinic in under five minutes. No contract, no setup fee. Cancel anytime.</p>
-    <div class="cta-row">
+    <span class="cta-label">Get started</span>
+    <h2 class="cta-h">Your fee schedule,<br><em>never behind.</em></h2>
+    <p class="cta-p">Connect in under five minutes. No contract, no setup fee. Cancel anytime.</p>
+    <div class="cta-form">
       <input class="cta-input" type="email" placeholder="your@clinic.com"/>
-      <a href="https://vetinc.ca/setup.html" class="btn btn-cta">Start free</a>
+      <a href="https://vetinc.ca/setup.html" class="btn btn-white">Start free</a>
     </div>
-    <p class="cta-fine">No credit card &nbsp;·&nbsp; Canadian clinics &nbsp;·&nbsp; All major PMS supported</p>
+    <p class="cta-fine">No credit card &nbsp;·&nbsp; Canadian clinics &nbsp;·&nbsp; AVImark &amp; Cornerstone</p>
   </div>
 </section>
 
 <footer>
-  <div class="f-left">
+  <div class="f-logo">
     <div class="f-mark"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
     <span class="f-copy">Vet INC &nbsp;·&nbsp; © 2026</span>
   </div>
@@ -499,26 +368,9 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,.05); p
 
 <script>
 const io = new IntersectionObserver(e => e.forEach(x => {
-  if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); }
+  if (x.isIntersecting) { x.target.classList.add('on'); io.unobserve(x.target); }
 }), { threshold: .08 });
-document.querySelectorAll('.reveal, .reveal-fade').forEach(el => io.observe(el));
-
-function animateCount(el, target, dur = 1400) {
-  const t0 = performance.now();
-  (function run(now) {
-    const p = Math.min((now - t0) / dur, 1);
-    const e = p < .5 ? 2*p*p : -1+(4-2*p)*p;
-    el.textContent = Math.floor(e * target);
-    if (p < 1) requestAnimationFrame(run); else el.textContent = target;
-  })(performance.now());
-}
-const cio = new IntersectionObserver(e => e.forEach(x => {
-  if (x.isIntersecting) {
-    x.target.querySelectorAll('.count[data-target]').forEach(el => animateCount(el, +el.dataset.target));
-    cio.unobserve(x.target);
-  }
-}), { threshold: .5 });
-document.querySelectorAll('.stats').forEach(el => cio.observe(el));
+document.querySelectorAll('.reveal, .reveal-u').forEach(el => io.observe(el));
 
 document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
   const t = document.querySelector(a.getAttribute('href'));
