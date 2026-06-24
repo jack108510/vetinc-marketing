@@ -88,101 +88,33 @@ nav {
 
 /* DEVICE SHOWCASE */
 .device-showcase {
-  max-width: 1000px; margin: 0 auto; padding: 40px 24px 100px;
+  max-width: 1000px; margin: 0 auto; padding: 30px 24px 90px;
   display: flex; align-items: center; justify-content: center; gap: 0;
   position: relative;
-  perspective: 2400px;
 }
 
 /* Laptop */
 .laptop-wrap {
   width: 100%; max-width: 680px;
   position: relative; z-index: 2;
-  transform: rotateY(-22deg) rotateX(5deg);
-  transform-style: preserve-3d;
-  filter: drop-shadow(0 40px 50px rgba(0,0,0,.12));
+  filter: drop-shadow(0 30px 50px rgba(0,0,0,.1));
 }
-.laptop {
-  position: relative;
-  background: #1a1a1a;
-  border-radius: 12px 12px 2px 2px;
-  padding: 10px 10px 0;
-  box-shadow: inset 0 0 0 1px #383838;
-}
-.laptop-screen-bezel {
-  border-radius: 3px;
-  overflow: hidden;
-  background: #000;
-  border: 1px solid #222;
-  position: relative;
-  aspect-ratio: 16 / 10;
-}
-.laptop-screen-bezel img {
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: top;
-  display: block;
-}
-.laptop-camera {
-  position: absolute;
-  top: 2px; left: 50%; transform: translateX(-50%);
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: #0a0a0a;
-  z-index: 4;
-}
-.laptop-base {
-  height: 6px;
-  background: linear-gradient(180deg, #d4d4d4 0%, #b8b8b8 60%, #a0a0a0 100%);
-  border-radius: 0 0 8px 8px;
-  margin: 0 -3px;
-  position: relative;
-}
-.laptop-base::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 50%; transform: translateX(-50%);
-  width: 14%; height: 4px;
-  background: #909090;
-  border-radius: 0 0 5px 5px;
+.laptop-wrap img {
+  width: 100%; height: auto; display: block;
 }
 
 /* Phone */
 .phone-wrap {
-  width: 120px;
+  width: 130px;
   flex-shrink: 0;
   position: relative; z-index: 3;
-  margin-left: -60px;
-  transform: rotateY(-15deg) rotateX(3deg) translateY(20px);
-  transform-style: preserve-3d;
-  filter: drop-shadow(0 25px 30px rgba(0,0,0,.1));
+  margin-left: -50px;
+  transform: translateY(15px);
+  filter: drop-shadow(0 20px 25px rgba(0,0,0,.08));
 }
 @media (max-width: 700px) { .phone-wrap { display: none; } }
-.phone {
-  background: #1a1a1a;
-  border-radius: 16px;
-  padding: 4px;
-  box-shadow: inset 0 0 0 1px #333;
-}
-.phone-screen-bezel {
-  border-radius: 13px;
-  overflow: hidden;
-  background: #000;
-  border: 1px solid #222;
-  position: relative;
-  aspect-ratio: 9 / 19;
-}
-.phone-notch {
-  position: absolute;
-  top: 0; left: 50%; transform: translateX(-50%);
-  width: 38px; height: 12px;
-  background: #1a1a1a;
-  border-radius: 0 0 8px 8px;
-  z-index: 4;
-}
-.phone-screen-bezel img {
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: top;
-  display: block;
+.phone-wrap img {
+  width: 100%; height: auto; display: block;
 }
 
 /* SECTIONS */
@@ -306,22 +238,11 @@ footer { border-top: 1px solid var(--line); padding: 24px; }
   <div class="device-showcase r">
     <!-- LAPTOP -->
     <div class="laptop-wrap">
-      <div class="laptop">
-        <div class="laptop-screen-bezel">
-          <div class="laptop-camera"></div>
-          <img src="dashboard-full.png" alt="Vet INC dashboard — fee schedule management"/>
-        </div>
-      </div>
-      <div class="laptop-base"></div>
+      <img src="laptop-device.png" alt="Vet INC dashboard on laptop"/>
     </div>
     <!-- PHONE -->
     <div class="phone-wrap">
-      <div class="phone">
-        <div class="phone-screen-bezel">
-          <div class="phone-notch"></div>
-          <img src="dashboard-preview.png" alt="Vet INC mobile dashboard"/>
-        </div>
-      </div>
+      <img src="phone-device.png" alt="Vet INC dashboard on phone"/>
     </div>
   </div>
 </div>
