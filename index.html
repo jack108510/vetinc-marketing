@@ -56,110 +56,14 @@ nav{max-width:1040px;margin:0 auto;height:60px;padding:0 24px;display:flex;align
 
 /* ═══ DEVICE SHOWCASE ═══ */
 .showcase{
-  max-width:900px;margin:0 auto;padding:30px 24px 90px;
+  max-width:900px;margin:0 auto;padding:20px 24px 90px;
   display:flex;align-items:center;justify-content:center;
-  position:relative;perspective:2000px;
-}
-
-/* ── MacBook ── */
-.macbook{
-  width:100%;max-width:640px;position:relative;z-index:2;
-  transform:rotateX(8deg) rotateY(-8deg);
-  transform-style:preserve-3d;
-  filter:drop-shadow(0 35px 40px rgba(0,0,0,.1));
-}
-/* Screen */
-.mb-screen{
-  background:#111;
-  border-radius:16px 16px 3px 3px;
-  padding:8px 8px 0;
   position:relative;
-  box-shadow:inset 0 0 0 1px #333;
 }
-.mb-screen-inner{
-  background:#000;
-  border-radius:8px 8px 0 0;
-  overflow:hidden;
-  border-radius:6px;
-  position:relative;
-  aspect-ratio:16/10;
-}
-.mb-screen-inner img{
-  width:100%;height:100%;
-  object-fit:cover;object-position:top;
+.hero-device-img{
+  width:100%;max-width:780px;height:auto;
   display:block;
-}
-/* Camera notch */
-.mb-screen::before{
-  content:'';position:absolute;
-  top:3px;left:50%;transform:translateX(-50%);
-  width:4px;height:4px;border-radius:50%;
-  background:#000;z-index:5;
-}
-/* Base */
-.mb-base{
-  position:relative;
-  margin:0 -6px;
-}
-.mb-base-top{
-  height:6px;
-  background:linear-gradient(180deg,#d6d6d6,#b8b8b8);
-  border-radius:0 0 4px 4px;
-}
-.mb-base-front{
-  height:10px;
-  background:linear-gradient(180deg,#c0c0c0 0%,#a8a8a8 50%,#969696 100%);
-  border-radius:0 0 12px 12px;
-  margin:0 -2px;
-  position:relative;
-  box-shadow:0 4px 8px rgba(0,0,0,.04);
-}
-.mb-base-front::before{
-  content:'';position:absolute;
-  top:0;left:50%;transform:translateX(-50%);
-  width:60px;height:4px;
-  background:#909090;
-  border-radius:0 0 4px 4px;
-}
-
-/* ── iPhone ── */
-.iphone{
-  width:120px;flex-shrink:0;
-  position:relative;z-index:3;
-  margin-left:-40px;
-  transform:rotateY(-5deg) rotateX(3deg) translateY(10px);
-  transform-style:preserve-3d;
-  filter:drop-shadow(0 20px 20px rgba(0,0,0,.08));
-}
-@media(max-width:700px){.iphone{display:none}}
-
-.iphone-frame{
-  background:#111;
-  border-radius:18px;
-  padding:3px;
-  position:relative;
-  box-shadow:inset 0 0 0 1px #333;
-}
-.iphone-screen{
-  background:#000;
-  border-radius:15px;
-  overflow:hidden;
-  position:relative;
-  aspect-ratio:9/19.5;
-}
-.iphone-screen img{
-  width:100%;height:100%;
-  object-fit:cover;object-position:top;
-  display:block;
-}
-/* Dynamic Island */
-.iphone-screen::before{
-  content:'';position:absolute;
-  top:8px;left:50%;transform:translateX(-50%);
-  width:50px;height:14px;
-  background:#000;
-  border-radius:10px;
-  z-index:5;
+  filter:drop-shadow(0 25px 50px rgba(0,0,0,.08));
 }
 
 /* SECTIONS */
@@ -254,26 +158,7 @@ footer{border-top:1px solid var(--line);padding:24px}
 
   <!-- DEVICE SHOWCASE -->
   <div class="showcase r">
-    <!-- MACBOOK -->
-    <div class="macbook">
-      <div class="mb-screen">
-        <div class="mb-screen-inner">
-          <img src="dashboard-full.png" alt="Vet INC dashboard"/>
-        </div>
-      </div>
-      <div class="mb-base">
-        <div class="mb-base-top"></div>
-        <div class="mb-base-front"></div>
-      </div>
-    </div>
-    <!-- IPHONE -->
-    <div class="iphone">
-      <div class="iphone-frame">
-        <div class="iphone-screen">
-          <img src="dashboard-preview.png" alt="Vet INC mobile"/>
-        </div>
-      </div>
-    </div>
+    <img src="laptop-device.png" alt="Vet INC dashboard on MacBook and iPhone" class="hero-device-img"/>
   </div>
 </div>
 

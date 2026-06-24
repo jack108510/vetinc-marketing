@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 610" width="100%" height="100%">
+  <defs>
+    <linearGradient id="body" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38383a"/>
+      <stop offset="50%" stop-color="#1c1c1e"/>
+      <stop offset="100%" stop-color="#161618"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#48484a"/>
+      <stop offset="100%" stop-color="#2a2a2c"/>
+    </linearGradient>
+    <filter id="ps" x="-10%" y="-3%" width="120%" height="108%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="-4" dy="12" result="off"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.08"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g filter="url(#ps)">
+    <!-- Side buttons -->
+    <rect x="288" y="130" width="3" height="32" rx="1" fill="#48484a"/>
+    <rect x="288" y="170" width="3" height="50" rx="1" fill="#48484a"/>
+    <rect x="288" y="228" width="3" height="50" rx="1" fill="#48484a"/>
+    <rect x="8" y="155" width="3" height="28" rx="1" fill="#48484a"/>
+    <!-- Body -->
+    <rect x="14" y="8" width="272" height="594" rx="32" fill="url(#body)"/>
+    <!-- Inner bezel -->
+    <rect x="19" y="13" width="262" height="584" rx="27" fill="#000"/>
+    <!-- Screen content -->
+    <image x="22" y="16" width="256" height="578" href="dashboard-preview.png" preserveAspectRatio="xMidYMin slice"/>
+    <!-- Dynamic island -->
+    <rect x="105" y="16" width="90" height="24" rx="12" fill="#000"/>
+    <circle cx="178" cy="28" r="3.5" fill="#0a0a0a"/>
+  </g>
+</svg>
