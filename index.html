@@ -91,12 +91,15 @@ nav {
   max-width: 980px; margin: 0 auto; padding: 24px 24px 90px;
   display: flex; align-items: center; justify-content: center; gap: 0;
   position: relative;
+  perspective: 2000px;
 }
 
 /* Laptop */
 .laptop-wrap {
   width: 100%; max-width: 720px;
   position: relative; z-index: 2;
+  transform: rotateY(-12deg) rotateX(4deg);
+  transform-style: preserve-3d;
 }
 .laptop {
   position: relative;
@@ -149,7 +152,8 @@ nav {
   flex-shrink: 0;
   position: relative; z-index: 3;
   margin-left: -45px;
-  transform: translateY(8px);
+  transform: translateY(8px) rotateY(-6deg) rotateX(2deg);
+  transform-style: preserve-3d;
   filter: drop-shadow(0 20px 30px rgba(0,0,0,.1));
 }
 @media (max-width: 700px) { .phone-wrap { display: none; } }
