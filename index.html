@@ -88,47 +88,124 @@ nav {
 .hero-fine span { font-size: .78rem; color: var(--dimmer); display: flex; align-items: center; gap: 5px; }
 .hero-fine span::before { content: '✓'; color: var(--blue); font-weight: 700; }
 
-/* ── DEVICE PREVIEW ── */
-.device-wrap { max-width: 920px; margin: 0 auto; padding: 0 24px 80px; perspective: 1400px; }
-
-/* Laptop */
-.laptop { position: relative; margin: 0 auto; transform: rotateX(4deg); transform-style: preserve-3d; }
-.laptop-screen {
-  background: #1a1a1a;
-  border-radius: 12px 12px 4px 4px;
-  padding: 14px 14px 10px;
-  border: 3px solid #333;
-  border-bottom: none;
-  box-shadow: 0 1px 3px rgba(0,0,0,.06), 0 30px 60px rgba(0,0,0,.08);
+/* ── DEVICE SHOWCASE ── */
+.device-showcase {
+  max-width: 1000px; margin: 0 auto; padding: 20px 24px 80px;
+  display: flex; align-items: flex-end; justify-content: center; gap: 0;
+  position: relative;
 }
-.laptop-screen-inner {
+
+/* ── Laptop ── */
+.laptop-wrap {
+  width: 100%; max-width: 760px;
+  position: relative; z-index: 2;
+  transform: perspective(1600px) rotateX(6deg);
+  transform-origin: bottom center;
+}
+.laptop-lid {
+  background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
+  border-radius: 14px 14px 3px 3px;
+  padding: 12px 12px 8px;
+  border: 2px solid #444;
+  border-bottom: 3px solid #222;
+  box-shadow: 0 0 0 1px #555, 0 30px 70px rgba(0,0,0,.1);
+}
+.laptop-display {
   background: var(--bg2);
-  border-radius: 6px;
+  border-radius: 5px;
   overflow: hidden;
   border: 1px solid var(--line);
 }
-.laptop-bar { display: flex; align-items: center; gap: 5px; padding: 8px 12px; border-bottom: 1px solid var(--line); background: var(--bg3); }
-.laptop-bar span { width: 8px; height: 8px; border-radius: 50%; }
-.laptop-bar .r1 { background: #f87171; } .laptop-bar .r2 { background: #fbbf24; } .laptop-bar .r3 { background: #34d399; }
-.laptop-bar .url { font-size: .62rem; color: var(--dimmer); margin-left: 8px; font-weight: 500; }
-.laptop-base {
-  height: 10px;
-  background: linear-gradient(180deg, #c0c0c0 0%, #a0a0a0 50%, #909090 100%);
-  border-radius: 0 0 14px 14px;
-  margin: 0 -30px;
-  position: relative;
-  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+.laptop-display-bar { display: flex; align-items: center; gap: 5px; padding: 7px 11px; border-bottom: 1px solid var(--line); background: var(--bg3); }
+.laptop-display-bar span { width: 8px; height: 8px; border-radius: 50%; }
+.laptop-display-bar .r1 { background: #f87171; } .laptop-display-bar .r2 { background: #fbbf24; } .laptop-display-bar .r3 { background: #34d399; }
+.laptop-display-bar .url { font-size: .6rem; color: var(--dimmer); margin-left: 8px; font-weight: 500; }
+.laptop-hinge {
+  height: 5px;
+  background: linear-gradient(180deg, #555, #333);
+  border-radius: 0 0 3px 3px;
 }
-.laptop-base::before {
+.laptop-keydeck {
+  background: linear-gradient(145deg, #c8c8c8, #b0b0b0);
+  border-radius: 3px 3px 12px 12px;
+  padding: 10px 20px 14px;
+  margin: 0 -8px;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0,0,0,.06);
+}
+.laptop-keydeck::before {
   content: '';
   position: absolute;
-  bottom: 0; left: 50%; transform: translateX(-50%);
-  width: 120px; height: 5px;
-  background: #808080;
-  border-radius: 0 0 8px 8px;
+  top: 4px; left: 50%; transform: translateX(-50%);
+  width: 50px; height: 3px;
+  background: #999;
+  border-radius: 2px;
+}
+.laptop-keydeck::after {
+  content: '';
+  display: block;
+  height: 28px;
+  background: linear-gradient(180deg, #ddd 0%, #ccc 50%, #bbb 100%);
+  border-radius: 4px;
+  margin-top: 4px;
 }
 
-.dash { padding: 16px; }
+/* ── Phone ── */
+.phone-wrap {
+  width: 130px;
+  flex-shrink: 0;
+  position: relative; z-index: 3;
+  margin-left: -30px;
+  margin-bottom: 40px;
+  transform: perspective(1200px) rotateY(-8deg) rotateX(3deg);
+}
+@media (max-width: 700px) {
+  .phone-wrap { display: none; }
+}
+.phone-frame {
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  border-radius: 18px;
+  padding: 6px;
+  border: 2px solid #333;
+  box-shadow: 0 20px 40px rgba(0,0,0,.12);
+}
+.phone-notch {
+  width: 40px; height: 8px;
+  background: #1a1a1a;
+  border-radius: 0 0 8px 8px;
+  margin: 0 auto 2px;
+  position: relative; z-index: 4;
+}
+.phone-screen {
+  background: var(--bg2);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #333;
+  height: 240px;
+}
+.phone-statusbar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 3px 10px 2px;
+  font-size: .5rem; font-weight: 700; color: var(--ink);
+}
+.phone-content { padding: 8px; }
+.phone-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 6px;
+}
+.phone-card-title { font-size: .48rem; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+.phone-card-row { display: flex; justify-content: space-between; align-items: center; font-size: .44rem; }
+.phone-card-old { color: var(--dimmer); text-decoration: line-through; }
+.phone-card-new { color: var(--blue); font-weight: 700; }
+.phone-card-tag { font-size: .38rem; font-weight: 600; padding: 1px 4px; border-radius: 3px; background: var(--green-bg); color: var(--green); }
+.phone-stat { text-align: center; margin-bottom: 6px; }
+.phone-stat-n { font-size: .7rem; font-weight: 800; color: var(--blue); }
+.phone-stat-l { font-size: .38rem; color: var(--dim); }
+
+.dash { padding: 14px; }
 .dash-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
 .dash-title { font-size: .9rem; font-weight: 700; color: var(--ink); }
 .dash-sub { font-size: .7rem; color: var(--dimmer); margin-top: 2px; }
@@ -271,12 +348,14 @@ footer { border-top: 1px solid var(--line); padding: 24px; }
     </div>
   </div>
 
-  <!-- DEVICE PREVIEW -->
-  <div class="device-wrap r">
-    <div class="laptop">
-      <div class="laptop-screen">
-        <div class="laptop-screen-inner">
-          <div class="laptop-bar">
+  <!-- DEVICE SHOWCASE -->
+  <div class="device-showcase r">
+
+    <!-- LAPTOP -->
+    <div class="laptop-wrap">
+      <div class="laptop-lid">
+        <div class="laptop-display">
+          <div class="laptop-display-bar">
             <span class="r1"></span><span class="r2"></span><span class="r3"></span>
             <span class="url">app.vetinc.ca</span>
           </div>
@@ -323,9 +402,55 @@ footer { border-top: 1px solid var(--line); padding: 24px; }
             <span class="dash-td tag up">Approve</span>
           </div>
         </div>
+        </div>
       </div>
-      <div class="laptop-base"></div>
+      <div class="laptop-hinge"></div>
+      <div class="laptop-keydeck"></div>
     </div>
+
+    <!-- PHONE -->
+    <div class="phone-wrap">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="phone-statusbar">
+            <span>9:41</span>
+            <span>●●●</span>
+          </div>
+          <div class="phone-content">
+            <div class="phone-stat">
+              <div class="phone-stat-n">5</div>
+              <div class="phone-stat-l">Changes ready</div>
+            </div>
+            <div class="phone-card">
+              <div class="phone-card-title">Wellness Exam</div>
+              <div class="phone-card-row">
+                <span class="phone-card-old">$68</span>
+                <span class="phone-card-new">$79</span>
+                <span class="phone-card-tag">Approve</span>
+              </div>
+            </div>
+            <div class="phone-card">
+              <div class="phone-card-title">Dental Clean</div>
+              <div class="phone-card-row">
+                <span class="phone-card-old">$210</span>
+                <span class="phone-card-new">$235</span>
+                <span class="phone-card-tag">Approve</span>
+              </div>
+            </div>
+            <div class="phone-card">
+              <div class="phone-card-title">Spay &lt;20kg</div>
+              <div class="phone-card-row">
+                <span class="phone-card-old">$290</span>
+                <span class="phone-card-new">$320</span>
+                <span class="phone-card-tag">Approve</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
