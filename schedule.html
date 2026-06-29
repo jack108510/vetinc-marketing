@@ -59,7 +59,6 @@ nav{max-width:1040px;margin:0 auto;height:100px;padding:0 24px;display:flex;alig
 .cal-day.selected{background:var(--blue)!important;color:#fff!important;font-weight:700}
 .cal-day.today{font-weight:800;color:var(--blue)}
 .cal-day:disabled{color:var(--dimmer);cursor:default;opacity:.4}
-.cal-day.other-month{opacity:.25}
 
 /* TIME SLOTS */
 .slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px}
@@ -255,14 +254,9 @@ function renderCal() {
 
   const firstDay = new Date(currentYear, currentMonth, 1).getDay();
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-  const daysInPrev = new Date(currentYear, currentMonth, 0).getDate();
 
   for (let i = 0; i < firstDay; i++) {
-    const el = document.createElement('button');
-    el.className = 'cal-day other-month';
-    el.textContent = daysInPrev - firstDay + i + 1;
-    el.disabled = true;
-    grid.appendChild(el);
+    grid.appendChild(document.createElement('div'));
   }
 
   for (let d = 1; d <= daysInMonth; d++) {
@@ -285,16 +279,6 @@ function renderCal() {
     grid.appendChild(el);
   }
 
-  const remaining = 7 - ((firstDay + daysInMonth) % 7 || 7);
-  if (remaining < 7) {
-    for (let i = 1; i <= remaining; i++) {
-      const el = document.createElement('button');
-      el.className = 'cal-day other-month';
-      el.textContent = i;
-      el.disabled = true;
-      grid.appendChild(el);
-    }
-  }
 }
 
 function selectDate(dateStr, dateObj, el) {
