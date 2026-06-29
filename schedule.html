@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Book a Free Analysis — Vet INC</title>
+<meta name="description" content="Book a free fee schedule analysis with Vet INC. Pick a time that works for you."/>
+<link rel="icon" type="image/png" href="logo.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#fff;--bg2:#f8fafc;--bg3:#f1f5f9;
+  --line:#e2e8f0;--line2:#cbd5e1;
+  --blue:#2563eb;--blue2:#3b82f6;--blue-bg:#eff6ff;
+  --green:#16a34a;--green-bg:#f0fdf4;
+  --ink:#0f172a;--ink2:#334155;--dim:#64748b;--dimmer:#94a3b8;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;min-height:100vh}
+
+/* NAV */
+.nav-wrap{position:fixed;top:0;left:0;right:0;z-index:99;background:rgba(255,255,255,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+nav{max-width:1040px;margin:0 auto;height:60px;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo img{height:30px;width:auto}
+.logo-text{font-size:1rem;font-weight:800;color:var(--ink);letter-spacing:-.3px}
+.nav-r{display:flex;align-items:center;gap:4px}
+.nav-r a{font-size:.85rem;font-weight:500;color:var(--dim);text-decoration:none;padding:7px 12px;border-radius:7px;transition:.15s}
+.nav-r a:hover{color:var(--ink);background:var(--bg3)}
+
+/* PAGE */
+.page{padding:100px 24px 64px;max-width:900px;margin:0 auto}
+.page-header{text-align:center;margin-bottom:48px}
+.page-tag{display:inline-flex;align-items:center;gap:7px;font-size:.75rem;font-weight:600;color:var(--blue);background:var(--blue-bg);padding:5px 13px;border-radius:20px;margin-bottom:16px;border:1px solid #dbeafe}
+.page-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--blue)}
+.page-h{font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:800;letter-spacing:-1px;margin-bottom:12px}
+.page-p{font-size:.95rem;color:var(--dim);line-height:1.65;max-width:460px;margin:0 auto}
+
+/* BOOKING LAYOUT */
+.booking{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+@media(max-width:720px){.booking{grid-template-columns:1fr}}
+
+.card{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:28px;box-shadow:0 1px 3px rgba(0,0,0,.03),0 8px 24px rgba(0,0,0,.04)}
+.card-title{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);margin-bottom:20px}
+
+/* CALENDAR */
+.cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.cal-month{font-size:.95rem;font-weight:700;color:var(--ink)}
+.cal-btn{background:var(--bg3);border:none;width:30px;height:30px;border-radius:7px;cursor:pointer;font-size:.9rem;color:var(--ink2);display:flex;align-items:center;justify-content:center;transition:.15s}
+.cal-btn:hover{background:var(--line2)}
+.cal-btn:disabled{opacity:.3;cursor:default}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-day-label{font-size:.68rem;font-weight:700;color:var(--dimmer);text-align:center;padding:4px 0;letter-spacing:.03em}
+.cal-day{aspect-ratio:1;border-radius:7px;border:none;background:transparent;cursor:pointer;font-size:.82rem;font-weight:500;color:var(--ink2);transition:.15s;display:flex;align-items:center;justify-content:center}
+.cal-day:hover:not(:disabled){background:var(--blue-bg);color:var(--blue)}
+.cal-day.selected{background:var(--blue)!important;color:#fff!important;font-weight:700}
+.cal-day.today{font-weight:800;color:var(--blue)}
+.cal-day:disabled{color:var(--dimmer);cursor:default;opacity:.4}
+.cal-day.other-month{opacity:.25}
+
+/* TIME SLOTS */
+.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px}
+.slot{padding:9px 6px;border:1.5px solid var(--line);border-radius:8px;background:var(--bg);cursor:pointer;font-size:.8rem;font-weight:600;color:var(--ink2);text-align:center;transition:.15s;font-family:inherit}
+.slot:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-bg)}
+.slot.selected{border-color:var(--blue);background:var(--blue);color:#fff}
+.slots-placeholder{font-size:.83rem;color:var(--dimmer);text-align:center;padding:20px 0;line-height:1.5}
+
+/* FORM */
+.form-group{margin-bottom:16px}
+label{display:block;font-size:.78rem;font-weight:600;color:var(--ink2);margin-bottom:6px}
+input,textarea,select{width:100%;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;font-size:.88rem;font-family:inherit;color:var(--ink);background:var(--bg);transition:.15s;outline:none}
+input:focus,textarea:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.08)}
+textarea{resize:vertical;min-height:80px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.form-row{grid-template-columns:1fr}}
+
+.selected-summary{background:var(--blue-bg);border:1.5px solid #dbeafe;border-radius:8px;padding:12px 14px;margin-bottom:16px;font-size:.82rem;color:var(--blue);font-weight:600;display:none}
+.selected-summary.show{display:block}
+
+.btn-submit{width:100%;padding:13px 24px;background:var(--ink);color:#fff;border:none;border-radius:9px;font-size:.92rem;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-submit:hover{background:var(--blue);transform:translateY(-1px)}
+.btn-submit:disabled{opacity:.5;cursor:default;transform:none}
+
+.form-note{font-size:.74rem;color:var(--dimmer);text-align:center;margin-top:10px}
+
+/* SUCCESS */
+.success-screen{display:none;text-align:center;padding:40px 20px}
+.success-screen.show{display:block}
+.success-icon{width:56px;height:56px;background:var(--green-bg);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.4rem}
+.success-h{font-size:1.3rem;font-weight:800;margin-bottom:8px}
+.success-p{font-size:.88rem;color:var(--dim);line-height:1.6;max-width:340px;margin:0 auto 24px}
+.btn-back{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:var(--bg3);border:1px solid var(--line2);border-radius:8px;font-size:.85rem;font-weight:600;color:var(--ink2);text-decoration:none;cursor:pointer;font-family:inherit;transition:.15s}
+.btn-back:hover{background:var(--line)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--line);padding:24px;margin-top:40px}
+.footer-inner{max-width:1040px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.f-left{display:flex;align-items:center;gap:10px}
+.f-logo img{height:22px;width:auto;opacity:.4}
+.f-copy{font-size:.74rem;color:var(--dimmer)}
+.f-links{display:flex;gap:18px}
+.f-links a{font-size:.74rem;color:var(--dimmer);text-decoration:none}
+.f-links a:hover{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav-wrap">
+<nav>
+  <a class="logo" href="index.html"><img src="logo.png" alt="Vet INC" onerror="this.style.display='none'"/><span class="logo-text">Vet INC</span></a>
+  <div class="nav-r">
+    <a href="index.html#problem">Problem</a>
+    <a href="index.html#how">How it works</a>
+    <a href="index.html#pricing">Pricing</a>
+  </div>
+</nav>
+</div>
+
+<!-- PAGE -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-tag">Free — no obligation</span>
+    <h1 class="page-h">Book your free fee schedule analysis</h1>
+    <p class="page-p">Pick a time and we'll review your current fee schedule and show you exactly what we'd change — before you pay anything.</p>
+  </div>
+
+  <div class="booking" id="bookingLayout">
+
+    <!-- LEFT: Calendar + Time -->
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <div class="card-title">Select a date</div>
+        <div class="cal-nav">
+          <button class="cal-btn" id="prevBtn">&#8249;</button>
+          <span class="cal-month" id="calMonth"></span>
+          <button class="cal-btn" id="nextBtn">&#8250;</button>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Select a time <span style="font-size:.7rem;font-weight:500;color:var(--dimmer)">(Mountain Time)</span></div>
+        <div id="slotsWrap">
+          <div class="slots-placeholder">Pick a date to see available times</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Form -->
+    <div class="card">
+      <div class="card-title">Your information</div>
+
+      <div class="selected-summary" id="selectedSummary"></div>
+
+      <div id="bookingForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First name</label>
+            <input type="text" id="firstName" placeholder="Jane" autocomplete="given-name"/>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last name</label>
+            <input type="text" id="lastName" placeholder="Smith" autocomplete="family-name"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="jane@yourclinic.com" autocomplete="email"/>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" placeholder="(780) 555-0100" autocomplete="tel"/>
+        </div>
+        <div class="form-group">
+          <label for="clinic">Clinic name</label>
+          <input type="text" id="clinic" placeholder="Westside Animal Hospital"/>
+        </div>
+        <div class="form-group">
+          <label for="pms">Practice management software</label>
+          <select id="pms">
+            <option value="">Select one...</option>
+            <option>AVImark</option>
+            <option>Cornerstone</option>
+            <option>ezyVet</option>
+            <option>Impromed</option>
+            <option>IntraVet</option>
+            <option>VetPower</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="notes">Anything else? <span style="font-weight:400;color:var(--dimmer)">(optional)</span></label>
+          <textarea id="notes" placeholder="Number of locations, specific concerns, etc."></textarea>
+        </div>
+
+        <button class="btn-submit" id="submitBtn" disabled>
+          <span id="submitLabel">Confirm booking</span>
+        </button>
+        <p class="form-note">We'll send a confirmation to your email. No spam, ever.</p>
+      </div>
+
+      <!-- Success state -->
+      <div class="success-screen" id="successScreen">
+        <div class="success-icon">✓</div>
+        <h2 class="success-h">You're booked!</h2>
+        <p class="success-p" id="successMsg"></p>
+        <button class="btn-back" onclick="resetForm()">&#8592; Book another time</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="f-left"><div class="f-logo"><img src="logo.png" alt="Vet INC"/></div><span class="f-copy">© 2026 Vet INC</span></div>
+    <div class="f-links"><a href="mailto:jack@vetinc.ca">Contact</a><a href="tel:7809043599">780-904-3599</a></div>
+  </div>
+</footer>
+
+<script>
+const SLOTS = ['9:00 AM','9:30 AM','10:00 AM','10:30 AM','11:00 AM','11:30 AM','1:00 PM','1:30 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM'];
+
+let currentYear, currentMonth, selectedDate = null, selectedTime = null;
+
+function init() {
+  const now = new Date();
+  currentYear = now.getFullYear();
+  currentMonth = now.getMonth();
+  renderCal();
+}
+
+function renderCal() {
+  const now = new Date();
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('calMonth').textContent = `${months[currentMonth]} ${currentYear}`;
+
+  const prev = document.getElementById('prevBtn');
+  prev.disabled = (currentYear === now.getFullYear() && currentMonth <= now.getMonth());
+
+  const grid = document.getElementById('calGrid');
+  grid.innerHTML = '';
+
+  ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(d => {
+    const el = document.createElement('div');
+    el.className = 'cal-day-label';
+    el.textContent = d;
+    grid.appendChild(el);
+  });
+
+  const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const daysInPrev = new Date(currentYear, currentMonth, 0).getDate();
+
+  for (let i = 0; i < firstDay; i++) {
+    const el = document.createElement('button');
+    el.className = 'cal-day other-month';
+    el.textContent = daysInPrev - firstDay + i + 1;
+    el.disabled = true;
+    grid.appendChild(el);
+  }
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const el = document.createElement('button');
+    el.className = 'cal-day';
+    el.textContent = d;
+    const date = new Date(currentYear, currentMonth, d);
+    const isToday = date.toDateString() === now.toDateString();
+    const isPast = date < new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+
+    if (isToday) el.classList.add('today');
+    if (isPast || isWeekend) {
+      el.disabled = true;
+    } else {
+      const dateStr = date.toDateString();
+      if (selectedDate === dateStr) el.classList.add('selected');
+      el.addEventListener('click', () => selectDate(dateStr, date, el));
+    }
+    grid.appendChild(el);
+  }
+
+  const remaining = 7 - ((firstDay + daysInMonth) % 7 || 7);
+  if (remaining < 7) {
+    for (let i = 1; i <= remaining; i++) {
+      const el = document.createElement('button');
+      el.className = 'cal-day other-month';
+      el.textContent = i;
+      el.disabled = true;
+      grid.appendChild(el);
+    }
+  }
+}
+
+function selectDate(dateStr, dateObj, el) {
+  selectedDate = dateStr;
+  selectedTime = null;
+  document.querySelectorAll('.cal-day').forEach(d => d.classList.remove('selected'));
+  el.classList.add('selected');
+  renderSlots();
+  updateSummary();
+  updateSubmitBtn();
+}
+
+function renderSlots() {
+  const wrap = document.getElementById('slotsWrap');
+  wrap.innerHTML = '';
+  const grid = document.createElement('div');
+  grid.className = 'slots';
+  SLOTS.forEach(t => {
+    const btn = document.createElement('button');
+    btn.className = 'slot';
+    btn.textContent = t;
+    if (selectedTime === t) btn.classList.add('selected');
+    btn.addEventListener('click', () => selectTime(t, btn));
+    grid.appendChild(btn);
+  });
+  wrap.appendChild(grid);
+}
+
+function selectTime(time, el) {
+  selectedTime = time;
+  document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
+  el.classList.add('selected');
+  updateSummary();
+  updateSubmitBtn();
+}
+
+function updateSummary() {
+  const el = document.getElementById('selectedSummary');
+  if (selectedDate && selectedTime) {
+    const d = new Date(selectedDate);
+    const opts = { weekday:'long', month:'long', day:'numeric' };
+    el.textContent = `${d.toLocaleDateString('en-CA', opts)} at ${selectedTime} MT`;
+    el.classList.add('show');
+  } else if (selectedDate) {
+    const d = new Date(selectedDate);
+    el.textContent = `${d.toLocaleDateString('en-CA', { weekday:'long', month:'long', day:'numeric' })} — pick a time`;
+    el.classList.add('show');
+  } else {
+    el.classList.remove('show');
+  }
+}
+
+function updateSubmitBtn() {
+  const btn = document.getElementById('submitBtn');
+  const hasDate = !!selectedDate;
+  const hasTime = !!selectedTime;
+  const hasName = document.getElementById('firstName').value.trim();
+  const hasEmail = document.getElementById('email').value.trim();
+  btn.disabled = !(hasDate && hasTime && hasName && hasEmail);
+}
+
+document.querySelectorAll('#firstName,#lastName,#email,#phone,#clinic').forEach(el => {
+  el.addEventListener('input', updateSubmitBtn);
+});
+
+document.getElementById('prevBtn').addEventListener('click', () => {
+  currentMonth--;
+  if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+  renderCal();
+});
+
+document.getElementById('nextBtn').addEventListener('click', () => {
+  currentMonth++;
+  if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+  renderCal();
+});
+
+document.getElementById('submitBtn').addEventListener('click', () => {
+  const first = document.getElementById('firstName').value.trim();
+  const last = document.getElementById('lastName').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const clinic = document.getElementById('clinic').value.trim();
+  const pms = document.getElementById('pms').value;
+  const notes = document.getElementById('notes').value.trim();
+
+  const d = new Date(selectedDate);
+  const dateStr = d.toLocaleDateString('en-CA', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
+  const subject = `Vet INC Analysis Booking — ${first} ${last} — ${dateStr} at ${selectedTime}`;
+  const body = `New booking request:\n\nName: ${first} ${last}\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\nClinic: ${clinic || 'Not provided'}\nPMS: ${pms || 'Not specified'}\nDate: ${dateStr}\nTime: ${selectedTime} MT\nNotes: ${notes || 'None'}\n`;
+
+  window.location.href = `mailto:jack@vetinc.ca?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  document.getElementById('bookingForm').style.display = 'none';
+  document.getElementById('successScreen').classList.add('show');
+  document.getElementById('successMsg').textContent = `We're sending your booking request for ${dateStr} at ${selectedTime} MT to jack@vetinc.ca. You'll hear back within one business day.`;
+});
+
+function resetForm() {
+  selectedDate = null;
+  selectedTime = null;
+  document.getElementById('firstName').value = '';
+  document.getElementById('lastName').value = '';
+  document.getElementById('email').value = '';
+  document.getElementById('phone').value = '';
+  document.getElementById('clinic').value = '';
+  document.getElementById('pms').value = '';
+  document.getElementById('notes').value = '';
+  document.getElementById('bookingForm').style.display = '';
+  document.getElementById('successScreen').classList.remove('show');
+  document.getElementById('selectedSummary').classList.remove('show');
+  document.getElementById('slotsWrap').innerHTML = '<div class="slots-placeholder">Pick a date to see available times</div>';
+  updateSubmitBtn();
+  renderCal();
+}
+
+init();
+</script>
+</body>
+</html>
