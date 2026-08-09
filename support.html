@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Support — Vet INC</title>
+<meta name="description" content="Support for Vet INC customers."/>
+<link rel="icon" type="image/png" href="logo.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#fff;--bg2:#f8fafc;--line:#e2e8f0;--blue:#2563eb;--blue2:#3b82f6;--blue-bg:#eff6ff;--green:#16a34a;--green-bg:#f0fdf4;--ink:#0f172a;--ink2:#334155;--dim:#64748b;--dimmer:#94a3b8}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.65}
+.nav-wrap{position:sticky;top:0;z-index:99;background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+nav{max-width:940px;margin:0 auto;height:86px;padding:0 24px;display:flex;align-items:center;justify-content:space-between}.logo{display:flex;align-items:center;text-decoration:none}.logo img{height:74px;width:auto}.nav-r{display:flex;gap:8px;align-items:center}.nav-r a{font-size:.85rem;font-weight:600;color:var(--dim);text-decoration:none;padding:8px 12px;border-radius:8px}.nav-r a:hover{color:var(--ink);background:#f1f5f9}.nav-cta{background:var(--ink)!important;color:#fff!important}
+main{max-width:940px;margin:0 auto;padding:70px 24px 90px}.eyebrow{display:inline-flex;color:var(--blue);background:var(--blue-bg);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;margin-bottom:20px}.hero h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.08;letter-spacing:-1.2px;margin-bottom:14px}.hero p{font-size:1.02rem;color:var(--dim);max-width:620px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:38px}@media(max-width:720px){.grid{grid-template-columns:1fr}}.card{background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:28px}.card h2{font-size:1.08rem;margin-bottom:8px;letter-spacing:-.2px}.card p,.card li{color:var(--ink2);font-size:.95rem}.card ul{padding-left:22px;margin-top:8px}.card li{margin:7px 0}.contact-card{background:var(--ink);color:#fff;border:none}.contact-card p{color:rgba(255,255,255,.7)}.btn{display:inline-flex;align-items:center;padding:12px 18px;border-radius:9px;font-size:.9rem;font-weight:700;text-decoration:none;margin-top:16px}.btn-p{background:var(--blue);color:#fff}.btn-p:hover{background:var(--blue2)}.btn-s{background:#fff;color:var(--ink)}a{color:var(--blue)}.contact-card a:not(.btn){color:#fff}.muted{font-size:.85rem;color:var(--dim);margin-top:20px}footer{border-top:1px solid var(--line);padding:24px}.footer-inner{max-width:940px;margin:0 auto;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.f-copy,.f-links a{font-size:.78rem;color:var(--dimmer);text-decoration:none}.f-links{display:flex;gap:18px}
+</style>
+</head>
+<body>
+<div class="nav-wrap"><nav><a class="logo" href="/"><img src="logo.png" alt="Vet INC"/></a><div class="nav-r"><a href="/privacy.html">Privacy</a><a class="nav-cta" href="mailto:jack@vetinc.ca?subject=Vet%20INC%20support">Contact Support</a></div></nav></div>
+<main>
+  <section class="hero">
+    <span class="eyebrow">Support</span>
+    <h1>Help with Vet INC.</h1>
+    <p>Get support for the Vet INC mobile app, dashboard, PMS integration, fee schedule recommendations, and account access.</p>
+  </section>
+
+  <section class="grid">
+    <div class="card contact-card">
+      <h2>Contact support</h2>
+      <p>Email us with your clinic name, the screen you were on, and a short description of what happened.</p>
+      <a class="btn btn-p" href="mailto:jack@vetinc.ca?subject=Vet%20INC%20support">Email jack@vetinc.ca</a>
+    </div>
+
+    <div class="card">
+      <h2>Account access</h2>
+      <p>If you cannot sign in, contact support from the email address associated with your clinic account. We can help verify access and reset your account.</p>
+    </div>
+
+    <div class="card">
+      <h2>Pricing recommendations</h2>
+      <p>If a recommendation looks wrong, include the service code, current price, recommended price, and clinic location. We will review the data behind it.</p>
+    </div>
+
+    <div class="card">
+      <h2>PMS integration</h2>
+      <p>Vet INC works with clinic PMS data to review and update fee schedules. For integration issues, send the PMS name, clinic location, and the latest step completed.</p>
+    </div>
+
+    <div class="card">
+      <h2>App troubleshooting</h2>
+      <ul>
+        <li>Confirm you have the latest version of the app installed.</li>
+        <li>Close and reopen the app.</li>
+        <li>Check that your internet connection is working.</li>
+        <li>If the issue continues, email support with your device model and iOS version.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Privacy</h2>
+      <p>Read how Vet INC handles account, clinic, and app information.</p>
+      <a class="btn btn-s" href="/privacy.html">View privacy policy</a>
+    </div>
+  </section>
+
+  <p class="muted">Support contact: <a href="mailto:jack@vetinc.ca">jack@vetinc.ca</a></p>
+</main>
+<footer><div class="footer-inner"><span class="f-copy">© 2026 Vet INC</span><div class="f-links"><a href="/support.html">Support</a><a href="/privacy.html">Privacy</a><a href="mailto:jack@vetinc.ca">Contact</a></div></div></footer>
+</body>
+</html>
